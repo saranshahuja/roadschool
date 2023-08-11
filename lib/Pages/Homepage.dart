@@ -35,14 +35,14 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              OutlinedButton(
+              ElevatedButton(
                 onPressed: () {
                   // Handle Learn chapters button press
                 },
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: Colors.black),
                   backgroundColor: Colors.lightBlue, // Set button background color
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20), // Adjust padding
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 25), // Adjust padding
                 ),
                 child: Text(
                   'Learn chapters',
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: Colors.black),
                   backgroundColor: Colors.lightBlue, // Set button background color
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 25),// Adjust padding
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 25),// Adjust padding
                 ),
                 child: Text(
                   'Practice test',
@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: Colors.black),
                   backgroundColor: Colors.lightBlue, // Set button background color
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20), // Adjust padding
+                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 25), // Adjust padding
                 ),
                 child: Text(
                   'Course Progress',
