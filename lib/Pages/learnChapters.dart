@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class learnChapters extends StatefulWidget {
   const learnChapters({super.key});
 
