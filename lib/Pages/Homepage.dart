@@ -7,11 +7,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('C:\\Users\\Nishant\\AndroidStudioProjects\\untitled\\Images\\Cardrive.png', width: 40, height: 40), // Adjust width and height
-        title: Text('Home'),
-      ),
+          backgroundColor: Color(0xFFD9D9D9),
+          leading: Image.asset('C:\\Users\\Nishant\\AndroidStudioProjects\\untitled\\Images\\Cardrive.png', width: 40, height: 40), // Adjust width and height
+          title: Text('Home',
+            style: TextStyle(color: Colors.black),
+          )),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF034D91),
         unselectedItemColor: Colors.white,
         selectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
@@ -35,47 +37,77 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  // Handle Learn chapters button press
-                },
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide(color: Colors.black),
-                  backgroundColor: Colors.lightBlue, // Set button background color
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 25), // Adjust padding
-                ),
-                child: Text(
-                  'Learn chapters',
-                  style: TextStyle(fontSize: 18, color: Colors.black), // Set button text color
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 310,
+                    height: 110,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        // Handle Learn chapters button press
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: Colors.black),
+                        backgroundColor: Color(0x500071DA), // Set button background color
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 40, vertical: 20), // Adjust padding
+                      ),
+                      child: Text(
+                        'Learn chapters',
+                        style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle Practice test button press
-                },
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide(color: Colors.black),
-                  backgroundColor: Colors.lightBlue, // Set button background color
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 25),// Adjust padding
-                ),
-                child: Text(
-                  'Practice test',
-                  style: TextStyle(fontSize: 18, color: Colors.black), // Set button text color
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 310,
+                    height: 110,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        // Handle Practice test button press
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: Colors.black),
+                        backgroundColor: Color(0x500071DA), // Set button background color
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 40, vertical: 20), // Adjust padding
+                      ),
+                      child: Text(
+                        'Practice test',
+                        style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle Course Progress button press
-                },
-                style: OutlinedButton.styleFrom(
-                  side: BorderSide(color: Colors.black),
-                  backgroundColor: Colors.lightBlue, // Set button background color
-                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 25), // Adjust padding
-                ),
-                child: Text(
-                  'Course Progress',
-                  style: TextStyle(fontSize: 18, color: Colors.black), // Set button text color
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 310,
+                    height: 110,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        // Handle Course Progress button press
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: Colors.black),
+                        backgroundColor: Color(0x500071DA), // Set button background color
+                        padding:
+                        EdgeInsets.symmetric(horizontal: 40, vertical: 20), // Adjust padding
+                      ),
+                      child: Text(
+                        'Course Progress',
+                        style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -84,5 +116,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-
