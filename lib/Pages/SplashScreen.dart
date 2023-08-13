@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import '../utils.dart';
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
 
-class Scene extends StatelessWidget {
-  const Scene({super.key});
-
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: SplashScreen(),
+    );
+  }
+}
+class SplashScreenpage extends StatelessWidget {
+  const SplashScreenpage({super.key});
   @override
   Widget build(BuildContext context) {
     double baseWidth = 430;
