@@ -1,52 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/material.dart';
 
-// class learnChapters extends StatefulWidget {
-//   const learnChapters({super.key});
-//
-//   @override
-//   State<learnChapters> createState() => _learnChaptersState();
-// }
-//
-// class _learnChaptersState extends State<learnChapters> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(
-//
-//       ),
-//     );
-//   }
-// }
-//
-//
-//
-// void main() {
-//   runApp(MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: Text('Chapter Index and Stateful Text'),
-//         ),
-//         body: Column(
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           children: [
-//             SizedBox(height: 20),
-//             ChapterGrid(),
-//             SizedBox(height: 20),
-//             StatefulText(),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-import 'package:flutter/material.dart';
 void main() => runApp(const Test());
 
 class Test extends StatefulWidget {
