@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 
 
-
-
 class SplashScreenpage extends StatelessWidget {
   const SplashScreenpage({super.key});
   @override
@@ -175,7 +173,7 @@ class SplashScreenpage extends StatelessWidget {
                                 ),
                                 Container(
 
-                                    padding: EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
 
                                     child: const Icon(Icons.navigate_next, color: Colors.white,)),
                               ],

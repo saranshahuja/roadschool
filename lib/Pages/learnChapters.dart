@@ -7,14 +7,14 @@ class Test extends StatefulWidget {
 
   @override
   State<Test> createState() => _TestState();
-
 }
-
 class _TestState extends State<Test> {
   String textToShow = "";
+  @override
   @protected
   @mustCallSuper
   void initState(){
+    super.initState();
     textToShow = 'Incomplete';
   }
 
@@ -29,7 +29,7 @@ class _TestState extends State<Test> {
         body: Builder(
             builder: (BuildContext context) {
               return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, // Number of columns in the grid
                 ),
                 itemCount: 10, // Number of chapters
@@ -43,7 +43,7 @@ class _TestState extends State<Test> {
                             );
                           },
                           child: Container(
-                            margin: EdgeInsets.all(10),
+                            margin: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               color: Colors.green,
                               borderRadius: BorderRadius.circular(10),
@@ -51,7 +51,7 @@ class _TestState extends State<Test> {
                             child: Center(
                               child: Text(
                                 'Chapter ${index + 1}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
