@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 
-class chapterReviewScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ChapterReviewPage(),
-    );
-  }
-}
+
+
 
 class ChapterReviewPage extends StatelessWidget {
   @override
