@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "691337982278",
+    "project_id": "road-school",
+    "storage_bucket": "road-school.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691337982278:android:ad8394121265110df7f547",
+        "android_client_info": {
+          "package_name": "com.paragon.roadschool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691337982278-3ansg5j0beg50ln5f4hn2ptl9b3bpgmf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbVz47QBvgwIoNNspAClaqoW4mWWq3RlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691337982278-3ansg5j0beg50ln5f4hn2ptl9b3bpgmf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
