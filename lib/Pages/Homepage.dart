@@ -43,22 +43,29 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 310,
                     height: 110,
-                    child: OutlinedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         // Handle Learn chapters button press
                       },
-                      style: OutlinedButton.styleFrom(
+                      style: ElevatedButton.styleFrom(
                         side: BorderSide(color: Colors.black),
-                        backgroundColor: Color(0x500071DA), // Set button background color
+                        backgroundColor: Color(0x590071DA), // Set button background color
                         padding:
-                        EdgeInsets.symmetric(horizontal: 40, vertical: 20), // Adjust padding
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Adjust padding
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),)
                       ),
-                      child: const Text(
-                        'Learn chapters',
-                        style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
-                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/images/Study11.png', width: 45, height: 45),
+                          SizedBox(width: 12),
+                          Text(
+                            'Learn chapters',
+                            style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
+                          ),
+                        ],
+                      )
                     ),
                   ),
                 ],
@@ -69,22 +76,29 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 310,
                     height: 110,
-                    child: OutlinedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         // Handle Practice test button press
                       },
-                      style: OutlinedButton.styleFrom(
+                      style: ElevatedButton.styleFrom(
                         side: BorderSide(color: Colors.black),
                         backgroundColor: Color(0x500071DA), // Set button background color
                         padding:
-                        EdgeInsets.symmetric(horizontal: 40, vertical: 20), // Adjust padding
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Adjust padding
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),)
                       ),
-                      child: const Text(
-                        'Practice test',
-                        style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
-                      ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/images/image-45.png', width: 45, height: 45),
+                            SizedBox(width: 12),
+                            Text(
+                              'Practice Tests',
+                              style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
+                            ),
+                          ],
+                        )
                     ),
                   ),
                 ],
@@ -95,22 +109,29 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 310,
                     height: 110,
-                    child: OutlinedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         // Handle Course Progress button press
                       },
-                      style: OutlinedButton.styleFrom(
+                      style: ElevatedButton.styleFrom(
                         side: BorderSide(color: Colors.black),
                         backgroundColor: Color(0x500071DA), // Set button background color
                         padding:
-                        const EdgeInsets.symmetric(horizontal: 40, vertical: 20), // Adjust padding
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 20), // Adjust padding
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),)
                       ),
-                      child: const Text(
-                        'Course Progress',
-                        style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
-                      ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/images/progress1.png', width: 45, height: 45),
+                            SizedBox(width: 12),
+                            Text(
+                              'Course Progress',
+                              style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
+                            ),
+                          ],
+                        )
                     ),
                   ),
                 ],
