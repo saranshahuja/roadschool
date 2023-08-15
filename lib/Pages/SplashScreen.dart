@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils.dart';
-
+import 'package:roadschool/Pages/Homepage.dart';
 
 class SplashScreenpage extends StatelessWidget {
   const SplashScreenpage({super.key});
@@ -30,8 +30,8 @@ class SplashScreenpage extends StatelessWidget {
               children: [
                 Container(
                   // autobiographerF7f (6ovo54vPY337YWyZEJNAJm)
-                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 23*fem),
-                  padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 132*fem),
+                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
+                  padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 150*fem),
                   width: double.infinity,
                   decoration: const BoxDecoration (
                     image: DecorationImage (
@@ -63,7 +63,7 @@ class SplashScreenpage extends StatelessWidget {
                             Container(
                               // autographic2h (6ovoWe27enoughGBDbbipwK)
                               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
-                              padding: EdgeInsets.fromLTRB(124*fem, 104*fem, 124*fem, 63*fem),
+                              padding: EdgeInsets.fromLTRB(124*fem, 90*fem, 124*fem, 63*fem),
                               width: double.infinity,
                               decoration: const BoxDecoration (
                                 image: DecorationImage (
@@ -84,7 +84,7 @@ class SplashScreenpage extends StatelessWidget {
                                       padding: EdgeInsets.zero,
                                     ),
                                     child: Image.asset(
-                                      'assets/images/image-2.png',
+                                      'assets/images/splashicon.png',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -143,12 +143,14 @@ class SplashScreenpage extends StatelessWidget {
                         height: 100,
                         width: 150,
                         child: TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom (
-                            padding: EdgeInsets.zero,
-                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => HomePage()), // Navigate to HomePage
+                            );
+                          },
                           child: Container(
-                            padding: EdgeInsets.fromLTRB(26*fem, 4*fem, 18.5*fem, 4*fem),
+                            padding: EdgeInsets.fromLTRB(10*fem, 4*fem, 12.5*fem, 4*fem),
                             width: double.infinity,
                             decoration: BoxDecoration (
                               color: const Color(0xff024c90),
@@ -158,7 +160,7 @@ class SplashScreenpage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Container(
-                                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 16.5*fem, 0*fem),
+                                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 30*fem, 0*fem),
                                   child: Text(
                                     'Next',
                                     textAlign: TextAlign.center,
