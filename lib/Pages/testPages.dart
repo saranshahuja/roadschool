@@ -1,23 +1,6 @@
 import 'package:flutter/material.dart';
 import 'chapterReveiwScreen.dart';
 
-// void main() => runApp(MyApp());
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: LinearProgressIndicatorApp(),
-//       theme: ThemeData(
-//         appBarTheme: AppBarTheme(
-//           backgroundColor: Colors.grey,
-//         ),
-//         scaffoldBackgroundColor: Colors.grey[200],
-//       ),
-//     );
-//   }
-// }
-
 class LinearProgressIndicatorApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
