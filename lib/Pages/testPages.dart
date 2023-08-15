@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
+import 'chapterReveiwScreen.dart';
 
-
+// void main() => runApp(MyApp());
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: LinearProgressIndicatorApp(),
+//       theme: ThemeData(
+//         appBarTheme: AppBarTheme(
+//           backgroundColor: Colors.grey,
+//         ),
+//         scaffoldBackgroundColor: Colors.grey[200],
+//       ),
+//     );
+//   }
+// }
 
 class LinearProgressIndicatorApp extends StatefulWidget {
   @override
@@ -198,6 +214,28 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     },
   ];
 
+  Widget _buildOption(String optionText, int index, Color color) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: ElevatedButton(
+        onPressed: () {
+          setState(() {
+            _selectedOptionIndex = index;
+            _questions[_currentQuestion]['selectedOption'] = index; // Store the selected option for scoring
+            _answered = true;
+          });
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+        ),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(optionText),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -258,7 +296,8 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                           i,
                           Colors.green,
                         ),
-                      if (_selectedOptionIndex == i && _questions[_currentQuestion]['correctOption'] != i)
+                      if (_selectedOptionIndex == i &&
+                          _questions[_currentQuestion]['correctOption'] != i)
                         _buildOption(
                           _questions[_currentQuestion]['options'][i],
                           i,
@@ -286,8 +325,52 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                     }
                   });
                 },
-                child: Text(_currentQuestion < _questions.length - 1 ? 'Next Question' : 'Finish Quiz'),
+                child: Text(_currentQuestion < _questions.length - 1
+                    ? 'Next Question'
+                    : 'Retake Quiz'),
               ),
+              if (_currentQuestion == _questions.length - 1)
+                ElevatedButton(
+                  onPressed: () {
+                    int correctAnswers = 0;
+                    for (var question in _questions) {
+                      if (question['correctOption'] == question['selectedOption']) {
+                        correctAnswers++;
+                      }
+                    }
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Quiz Score"),
+                          content: Text(
+                              "You got $correctAnswers out of ${_questions.length} questions correct."),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: Text("Check Score"),
+                ),
+              if (_currentQuestion == _questions.length - 1)
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChapterReviewPage(), // Navigate to ChapterReviewPage
+                      ),
+                    );
+                  },
+                  child: Text("Finish Quiz"),
+                ),
             ],
           )
               : ElevatedButton(
@@ -300,26 +383,38 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
           ),
         ),
       ),
+      bottomNavigationBar: _loading && _currentQuestion == _questions.length
+          ? Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ElevatedButton(
+          onPressed: () {
+            // Replace this with your logic to show quiz results or navigate to a result page
+            // For example,
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => QuizResultPage(),
+              ),
+            );
+          },
+          child: Text("Show Result"),
+        ),
+      )
+          : null,
     );
   }
+}
 
-  Widget _buildOption(String optionText, int index, Color color) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: ElevatedButton(
-        onPressed: () {
-          setState(() {
-            _selectedOptionIndex = index;
-            _answered = true;
-          });
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-        ),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Text(optionText),
-        ),
+class QuizResultPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Implement the UI to display the quiz results here
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Quiz Results"),
+      ),
+      body: Center(
+        child: Text("Quiz Results will be displayed here."),
       ),
     );
   }
