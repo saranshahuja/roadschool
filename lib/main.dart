@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/Homepage.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'Pages/SplashScreen.dart';
 import 'Pages/learnChapters.dart';
 import 'Pages/progressScreen.dart';
 import 'firebase_options.dart';
 
-// ...
 
-// await Firebase.initializeApp(
+
+
+ main() {
+//   await Firebase.initializeApp(
 // options: DefaultFirebaseOptions.currentPlatform,
 // );
-
-void main() {
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreenpage(),
+      home: learnChapterpage(),
     );
   }
 }
