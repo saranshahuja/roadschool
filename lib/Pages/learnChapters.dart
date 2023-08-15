@@ -62,7 +62,7 @@ class learnChapterpage extends StatelessWidget {
                         width: 11.18*fem,
                         height: 21.3*fem,
                         child: Image.asset(
-                          'assets/LearnChapters/vector-5Rj.png',
+                          'assets/images/vector-5Rj.png',
                           width: 11.18*fem,
                           height: 21.3*fem,
                         ),
@@ -78,7 +78,7 @@ class learnChapterpage extends StatelessWidget {
                         width: 55*fem,
                         height: 55*fem,
                         child: Image.asset(
-                          'assets/LearnChapters/image-45.png',
+                          'assets/images/image-45.png',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -130,7 +130,7 @@ class learnChapterpage extends StatelessWidget {
                         width: 11.18*fem,
                         height: 21.3*fem,
                         child: Image.asset(
-                          'assets/LearnChapters/vector.png',
+                          'assets/images/vector.png',
                           width: 11.18*fem,
                           height: 21.3*fem,
                         ),
@@ -146,7 +146,7 @@ class learnChapterpage extends StatelessWidget {
                         width: 55*fem,
                         height: 55*fem,
                         child: Image.asset(
-                          'assets/LearnChapters/image-47.png',
+                          'assets/images/image-47.png',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -187,7 +187,7 @@ class learnChapterpage extends StatelessWidget {
                             padding: EdgeInsets.zero,
                           ),
                           child: Image.asset(
-                            'assets/LearnChapters/vector-xaM.png',
+                            'assets/images/vector-xaM.png',
                             width: 11.18*fem,
                             height: 21.3*fem,
                           ),
@@ -204,7 +204,7 @@ class learnChapterpage extends StatelessWidget {
                         width: 55*fem,
                         height: 55*fem,
                         child: Image.asset(
-                          'assets/LearnChapters/image-46.png',
+                          'assets/images/image-46.png',
                           fit: BoxFit.cover,
                         ),
                       ),
