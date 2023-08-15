@@ -225,8 +225,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
       appBar: AppBar(
         title: Text("Traffic Rules Quiz"),
         actions: [
-          IconButton(
-            icon: Icon(Icons.close),
+          TextButton(
             onPressed: () {
               setState(() {
                 _loading = false;
@@ -235,6 +234,13 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                 _answered = false;
               });
             },
+            child: Text(
+              "End Test",
+              style: TextStyle(
+                color: Colors.red, // Set the text color to red
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ],
       ),
@@ -360,6 +366,9 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
             onPressed: () {
               setState(() {
                 _loading = true;
+                _currentQuestion = 0; // Reset to the first question
+                _selectedOptionIndex = -1; // Reset the selected option
+                _answered = false; // Reset the answered status
               });
             },
             child: Text("Start Quiz"),
