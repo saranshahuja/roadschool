@@ -37,7 +37,7 @@ class SplashScreenpage extends StatelessWidget {
                     image: DecorationImage (
                       fit: BoxFit.cover,
                       image: AssetImage (
-                        'assets/SplashScreen/image-5-bg.png',
+                        'assets/images/image-5-bg.png',
                       ),
                     ),
                   ),
@@ -53,7 +53,7 @@ class SplashScreenpage extends StatelessWidget {
                           image: DecorationImage (
                             fit: BoxFit.cover,
                             image: AssetImage (
-                              'assets/SplashScreen/image-4-bg.png',
+                              'assets/images/image-4-bg.png',
                             ),
                           ),
                         ),
@@ -69,7 +69,7 @@ class SplashScreenpage extends StatelessWidget {
                                 image: DecorationImage (
                                   fit: BoxFit.cover,
                                   image: AssetImage (
-                                    'assets/SplashScreen/image-3-bg.png',
+                                    'assets/images/image-3-bg.png',
                                   ),
                                 ),
                               ),
@@ -84,7 +84,7 @@ class SplashScreenpage extends StatelessWidget {
                                       padding: EdgeInsets.zero,
                                     ),
                                     child: Image.asset(
-                                      'assets/SplashScreen/image-2.png',
+                                      'assets/images/image-2.png',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
