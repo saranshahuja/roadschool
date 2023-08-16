@@ -18,6 +18,15 @@ class _PracticeTestsState extends State<PracticeTests> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Image.asset('assets/images/vector.png'), // Replace with the actual image path
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()), // Navigate to HomePage
+            );
+          },
+        ),
         title: Text('Practice Tests'),
       ),
       body: GridView.builder(
