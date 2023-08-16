@@ -19,7 +19,7 @@ class _PracticeTestsState extends State<PracticeTests> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Image.asset('assets/images/vector.png'), // Replace with the actual image path
+          icon: Image.asset('assets/images/vector-5Rj.png'), // Replace with the actual image path
           onPressed: () {
             Navigator.push(
               context,
