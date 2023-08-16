@@ -21,7 +21,7 @@ class ChapterReviewPage extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                Image.asset('D:\\DrivingApp\\Logo.png'), // Added image path
+                Image.asset('assets/images/iconwtbg.png'), // Added image path
                 SizedBox(height: 10),
                 Text(
                   'Congratulations!',
