@@ -24,7 +24,7 @@ class _learnChaptersState extends State<learnChapters> {
             'assets/images/vector-5Rj.png', // Replace with the actual image path
             color: Colors.white,
             height: 24, // Adjust the height as needed
-            width: 24,  // Adjust the width as needed
+            width: 24,  // Adjust the width as needed //change
           ),
           onPressed: () {
             Navigator.push(
