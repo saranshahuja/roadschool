@@ -200,15 +200,14 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
   Widget _buildOption(String optionText, int index) {
     Color buttonColor = Color(0xFFE0E0E0);
     double opacity = 1.0;
-    bool isOptionDisabled = _answered;
 
     if (_answered) {
       if (index == _questions[_currentQuestion]['correctOption']) {
         buttonColor = Colors.green;
-      } else if (index == _selectedOptionIndex && index != _questions[_currentQuestion]['correctOption']) {
+      } else if (index == _selectedOptionIndex) {
         buttonColor = Colors.red;
       } else {
-        buttonColor = Color(0xFFE0E0E0);
+        // Making other options look faded
         opacity = 0.5;
       }
     }
@@ -216,16 +215,12 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     return Opacity(
       opacity: opacity,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0), // Adjust the spacing here
         child: ElevatedButton(
-          onPressed: isOptionDisabled
-              ? null
-              : () {
+          onPressed: () {
             setState(() {
-              if (!_answered) {
-                _selectedOptionIndex = index;
-                _answered = true;
-              }
+              _selectedOptionIndex = index;
+              _answered = true;
             });
           },
           style: ElevatedButton.styleFrom(
@@ -279,6 +274,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -290,7 +286,8 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
               setState(() {
                 _loading = false;
                 _currentQuestion = 0;
-                _selectedOptionIndex = -1;
+                _selectedOptionIndex
+                = -1;
                 _answered = false;
               });
             },
@@ -313,8 +310,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
             children: <Widget>[
               LinearProgressIndicator(
                 backgroundColor: Colors.grey,
-                valueColor:
-                new AlwaysStoppedAnimation<Color>(Colors.lightGreenAccent),
+                valueColor: new AlwaysStoppedAnimation<Color>(Colors.lightGreenAccent),
                 value: (_currentQuestion + 1) / _questions.length,
               ),
               SizedBox(height: 10),
@@ -338,9 +334,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  for (var i = 0;
-                  i < _questions[_currentQuestion]['options'].length;
-                  i++)
+                  for (var i = 0; i < _questions[_currentQuestion]['options'].length; i++)
                     _buildOption(
                       _questions[_currentQuestion]['options'][i],
                       i,
@@ -367,6 +361,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                       : 'Finish Quiz'),
                 ),
               ),
+
               if (_currentQuestion == _questions.length - 1)
                 Column(
                   children: [
@@ -374,8 +369,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                       onPressed: () {
                         int correctAnswers = 0;
                         for (var question in _questions) {
-                          if (question['correctOption'] ==
-                              question['selectedOption']) {
+                          if (question['correctOption'] == question['selectedOption']) {
                             correctAnswers++;
                           }
                         }
