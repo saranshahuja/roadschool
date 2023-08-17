@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roadschool/Pages/Practicetests.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,9 +10,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
           backgroundColor: Color(0xFFD9D9D9),
           leading: Image.asset('assets/images/iconwtbg.png', width: 40, height: 40), // Adjust width and height
-          title: const Text('Home',
-            style: TextStyle(color: Colors.black),
-          )),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFF034D91),
         unselectedItemColor: Colors.white,
@@ -45,20 +44,23 @@ class HomePage extends StatelessWidget {
                     height: 110,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Handle Learn chapters button press
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PracticeTests()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         side: BorderSide(color: Colors.black),
                         backgroundColor: Color(0x590071DA), // Set button background color
                         padding:
-                        EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Adjust padding
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 20), // Adjust padding
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),)
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset('assets/images/Study11.png', width: 45, height: 45),
+                          Image.asset('assets/images/Study11.png', width: 55, height: 55),
                           SizedBox(width: 12),
                           Text(
                             'Learn chapters',
@@ -91,7 +93,7 @@ class HomePage extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset('assets/images/image-45.png', width: 45, height: 45),
+                            Image.asset('assets/images/image-45.png', width: 55, height: 55),
                             SizedBox(width: 12),
                             Text(
                               'Practice Tests',
@@ -117,14 +119,14 @@ class HomePage extends StatelessWidget {
                         side: BorderSide(color: Colors.black),
                         backgroundColor: Color(0x500071DA), // Set button background color
                         padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 20), // Adjust padding
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 20), // Adjust padding
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),)
                       ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset('assets/images/progress1.png', width: 45, height: 45),
+                            Image.asset('assets/images/progress1.png', width: 55, height: 55),
                             SizedBox(width: 12),
                             Text(
                               'Course Progress',

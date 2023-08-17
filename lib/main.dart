@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/Homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Pages/SplashScreen.dart';
-import 'Pages/learnChapters.dart';
+import 'Pages/Practicetests.dart';
 import 'Pages/progressScreen.dart';
 import 'Pages/testPages.dart';
 import 'firebase_options.dart';
