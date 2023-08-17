@@ -17,203 +17,263 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
   final List<Map<String, dynamic>> _questions = [
     {
       'question': 'What does a red traffic light mean?',
-      'options': ['A. Stop', 'B. Go', 'C. Slow down', 'D. Turn left'],
+      'options': ['Stop', 'Go', 'Slow down', 'Turn left'],
       'correctOption': 0,
     },
     {
       'question': 'What should you do when you see a yield sign?',
       'options': [
-        'A. Speed up',
-        'B. Come to a complete stop',
-        'C. Slow down and yield the right-of-way',
-        'D. Honk your horn'
+        'Speed up',
+        'Come to a complete stop',
+        'Slow down and yield the right-of-way',
+        'Honk your horn'
       ],
       'correctOption': 2,
     },
     {
       'question': 'What does a yellow traffic light mean?',
       'options': [
-        'A. Slow down and prepare to stop',
-        'B. Speed up and cross the intersection quickly',
-        'C. Stop immediately',
-        'D. Change lanes'
+        'Slow down and prepare to stop',
+        'Speed up and cross the intersection quickly',
+        'Stop immediately',
+        'Change lanes'
       ],
       'correctOption': 0,
     },
     {
       'question': 'What does a green traffic light mean?',
-      'options': ['A. Stop', 'B. Yield', 'C. Go', 'D. Slow down'],
+      'options': ['Stop', 'Yield', 'Go', 'Slow down'],
       'correctOption': 2,
     },
     {
       'question': 'What does a flashing red traffic light mean?',
       'options': [
-        'A. Stop and proceed when safe',
-        'B. Go without stopping',
-        'C. Slow down and proceed with caution',
-        'D. Make a U-turn'
+        'Stop and proceed when safe',
+        'Go without stopping',
+        'Slow down and proceed with caution',
+        'Make a U-turn'
       ],
       'correctOption': 0,
     },
     {
       'question': 'What does a broken white line on the road mean?',
       'options': [
-        'A. No passing in either direction',
-        'B. Passing is allowed from one side',
-        'C. Passing is allowed from both sides',
-        'D. No parking'
+        'No passing in either direction',
+        'Passing is allowed from one side',
+        'Passing is allowed from both sides',
+        'No parking'
       ],
       'correctOption': 1,
     },
     {
       'question': 'What does a round traffic sign mean?',
       'options': [
-        'A. Stop',
-        'B. Yield',
-        'C. Warning',
-        'D. Speed limit'
+        'Stop',
+        'Yield',
+        'Warning',
+        'Speed limit'
       ],
       'correctOption': 2,
     },
     {
       'question': 'What does a diamond-shaped traffic sign indicate?',
       'options': [
-        'A. Construction zone',
-        'B. School zone',
-        'C. Railroad crossing',
-        'D. No entry'
+        'Construction zone',
+        'School zone',
+        'Railroad crossing',
+        'No entry'
       ],
       'correctOption': 0,
     },
     {
       'question': 'What should you do when an emergency vehicle is approaching with its lights and sirens on?',
       'options': [
-        'A. Maintain your speed and position',
-        'B. Pull over to the side and stop',
-        'C. Honk your horn to alert the driver',
-        'D. Speed up and get out of the way'
+        'Maintain your speed and position',
+        'Pull over to the side and stop',
+        'Honk your horn to alert the driver',
+        'Speed up and get out of the way'
       ],
       'correctOption': 1,
     },
     {
       'question': 'What does a rectangular blue sign indicate?',
       'options': [
-        'A. Speed limit',
-        'B. Exit or direction sign',
-        'C. School zone',
-        'D. Construction zone'
+        'Speed limit',
+        'Exit or direction sign',
+        'School zone',
+        'Construction zone'
       ],
       'correctOption': 1,
     },
     {
       'question': 'What is the maximum speed limit on highways in this area?',
       'options': [
-        'A. 55 mph',
-        'B. 65 mph',
-        'C. 70 mph',
-        'D. 75 mph'
+        '55 mph',
+        '65 mph',
+        '70 mph',
+        '75 mph'
       ],
       'correctOption': 2,
     },
     {
       'question': 'What should you do when approaching a school bus with flashing red lights?',
       'options': [
-        'A. Pass quickly on the left',
-        'B. Slow down and proceed with caution',
-        'C. Honk your horn to warn the children',
-        'D. Speed up to pass before it stops'
+        'Pass quickly on the left',
+        'Slow down and proceed with caution',
+        'Honk your horn to warn the children',
+        'Speed up to pass before it stops'
       ],
       'correctOption': 1,
     },
     {
       'question': 'What does a yellow diamond-shaped sign with black symbols indicate?',
       'options': [
-        'A. School zone',
-        'B. Construction zone',
-        'C. Warning of deer crossing',
-        'D. Railroad crossing'
+        'School zone',
+        'Construction zone',
+        'Warning of deer crossing',
+        'Railroad crossing'
       ],
       'correctOption': 2,
     },
     {
       'question': 'What does a white rectangular sign with red letters indicate?',
       'options': [
-        'A. No U-turn',
-        'B. Stop',
-        'C. No entry',
-        'D. Yield'
+        'No U-turn',
+        'Stop',
+        'No entry',
+        'Yield'
       ],
       'correctOption': 0,
     },
     {
       'question': 'What does a green arrow signal mean?',
       'options': [
-        'A. Go in the direction of the arrow',
-        'B. Yield to oncoming traffic',
-        'C. Slow down and prepare to stop',
-        'D. No left turn'
+        'Go in the direction of the arrow',
+        'Yield to oncoming traffic',
+        'Slow down and prepare to stop',
+        'No left turn'
       ],
       'correctOption': 0,
     },
     {
       'question': 'What should you do if you are driving and it starts to rain heavily?',
       'options': [
-        'A. Turn on your high beams',
-        'B. Speed up to get through the rain faster',
-        'C. Slow down and increase your following distance',
-        'D. Keep your windshield wipers off'
+        'Turn on your high beams',
+        'Speed up to get through the rain faster',
+        'Slow down and increase your following distance',
+        'Keep your windshield wipers off'
       ],
       'correctOption': 2,
     },
     {
       'question': 'What should you do if you miss your exit on the highway?',
       'options': [
-        'A. Back up on the highway',
-        'B. Make a U-turn on the highway',
-        'C. Continue to the next exit',
-        'D. Stop and wait for assistance'
+        'Back up on the highway',
+        'Make a U-turn on the highway',
+        'Continue to the next exit',
+        'Stop and wait for assistance'
       ],
       'correctOption': 2,
     },
     {
       'question': 'What does a solid white line at an intersection indicate?',
       'options': [
-        'A. Stop and yield the right-of-way',
-        'B. Slow down and proceed with caution',
-        'C. Change lanes',
-        'D. Go straight or turn'
+        'Stop and yield the right-of-way',
+        'Slow down and proceed with caution',
+        'Change lanes',
+        'Go straight or turn'
       ],
       'correctOption': 3,
     },
     {
       'question': 'What should you do when you approach a flashing yellow traffic signal?',
       'options': [
-        'A. Stop and wait for the light to turn green',
-        'B. Slow down and proceed with caution',
-        'C. Speed up to clear the intersection quickly',
-        'D. Stop only if other vehicles are present'
+        'Stop and wait for the light to turn green',
+        'Slow down and proceed with caution',
+        'Speed up to clear the intersection quickly',
+        'Stop only if other vehicles are present'
       ],
       'correctOption': 1,
     },
   ];
 
-  Widget _buildOption(String optionText, int index, Color color) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: ElevatedButton(
-        onPressed: () {
-          setState(() {
-            _selectedOptionIndex = index;
-            _questions[_currentQuestion]['selectedOption'] = index; // Store the selected option for scoring
-            _answered = true;
-          });
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-        ),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Text(optionText),
+  Widget _buildOption(String optionText, int index) {
+    Color buttonColor = Color(0xFFE0E0E0);
+    double opacity = 1.0;
+    bool isOptionDisabled = _answered;
+
+    if (_answered) {
+      if (index == _questions[_currentQuestion]['correctOption']) {
+        buttonColor = Colors.green;
+      } else if (index == _selectedOptionIndex && index != _questions[_currentQuestion]['correctOption']) {
+        buttonColor = Colors.red;
+      } else {
+        buttonColor = Color(0xFFE0E0E0);
+        opacity = 0.5;
+      }
+    }
+
+    return Opacity(
+      opacity: opacity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: ElevatedButton(
+          onPressed: isOptionDisabled
+              ? null
+              : () {
+            setState(() {
+              if (!_answered) {
+                _selectedOptionIndex = index;
+                _answered = true;
+              }
+            });
+          },
+          style: ElevatedButton.styleFrom(
+            primary: buttonColor,
+            padding: EdgeInsets.all(12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+              side: BorderSide(width: 0.50),
+            ),
+          ),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Row(
+                children: [
+                  Container(
+                    width: 30,
+                    height: 30,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Text(
+                      String.fromCharCode(index + 65) + '.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      optionText,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -237,7 +297,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
             child: Text(
               "End Test",
               style: TextStyle(
-                color: Colors.red, // Set the text color to red
+                color: Colors.red,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -252,8 +312,9 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               LinearProgressIndicator(
-                backgroundColor: Colors.cyanAccent,
-                valueColor: new AlwaysStoppedAnimation<Color>(Colors.green),
+                backgroundColor: Colors.grey,
+                valueColor:
+                new AlwaysStoppedAnimation<Color>(Colors.lightGreenAccent),
                 value: (_currentQuestion + 1) / _questions.length,
               ),
               SizedBox(height: 10),
@@ -277,88 +338,81 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  for (var i = 0; i < _questions[_currentQuestion]['options'].length; i++)
-                    if (_answered) ...[
-                      if (_questions[_currentQuestion]['correctOption'] == i)
-                        _buildOption(
-                          _questions[_currentQuestion]['options'][i],
-                          i,
-                          Colors.green,
-                        ),
-                      if (_selectedOptionIndex == i &&
-                          _questions[_currentQuestion]['correctOption'] != i)
-                        _buildOption(
-                          _questions[_currentQuestion]['options'][i],
-                          i,
-                          Colors.red,
-                        ),
-                    ] else ...[
-                      _buildOption(
-                        _questions[_currentQuestion]['options'][i],
-                        i,
-                        _selectedOptionIndex == i ? Colors.red : Colors.blueGrey,
-                      ),
-                    ],
+                  for (var i = 0;
+                  i < _questions[_currentQuestion]['options'].length;
+                  i++)
+                    _buildOption(
+                      _questions[_currentQuestion]['options'][i],
+                      i,
+                    ),
                 ],
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (_currentQuestion < _questions.length - 1) {
-                      _currentQuestion++;
-                      _selectedOptionIndex = -1;
-                      _answered = false;
-                    } else {
-                      _loading = false;
-                    }
-                  });
-                },
-                child: Text(_currentQuestion < _questions.length - 1
-                    ? 'Next Question'
-                    : 'Retake Quiz'),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (_currentQuestion < _questions.length - 1) {
+                        _currentQuestion++;
+                        _selectedOptionIndex = -1;
+                        _answered = false;
+                      } else {
+                        _loading = false;
+                      }
+                    });
+                  },
+                  child: Text(_currentQuestion < _questions.length - 1
+                      ? 'Next Question'
+                      : 'Finish Quiz'),
+                ),
               ),
               if (_currentQuestion == _questions.length - 1)
-                ElevatedButton(
-                  onPressed: () {
-                    int correctAnswers = 0;
-                    for (var question in _questions) {
-                      if (question['correctOption'] == question['selectedOption']) {
-                        correctAnswers++;
-                      }
-                    }
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text("Quiz Score"),
-                          content: Text(
-                              "You got $correctAnswers out of ${_questions.length} questions correct."),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text("OK"),
-                            ),
-                          ],
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        int correctAnswers = 0;
+                        for (var question in _questions) {
+                          if (question['correctOption'] ==
+                              question['selectedOption']) {
+                            correctAnswers++;
+                          }
+                        }
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Quiz Score"),
+                              content: Text(
+                                "You got $correctAnswers out of ${_questions.length} questions correct.",
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text("OK"),
+                                ),
+                              ],
+                            );
+                          },
                         );
                       },
-                    );
-                  },
-                  child: Text("Check Score"),
-                ),
-              if (_currentQuestion == _questions.length - 1)
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChapterReviewPage(), // Navigate to ChapterReviewPage
-                      ),
-                    );
-                  },
-                  child: Text("Finish Quiz"),
+                      child: Text("Check Score"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChapterReviewPage(),
+                          ),
+                        );
+                      },
+                      child: Text("Finish Quiz"),
+                    ),
+                  ],
                 ),
             ],
           )
@@ -366,9 +420,9 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
             onPressed: () {
               setState(() {
                 _loading = true;
-                _currentQuestion = 0; // Reset to the first question
-                _selectedOptionIndex = -1; // Reset the selected option
-                _answered = false; // Reset the answered status
+                _currentQuestion = 0;
+                _selectedOptionIndex = -1;
+                _answered = false;
               });
             },
             child: Text("Start Quiz"),
@@ -380,8 +434,6 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
           onPressed: () {
-            // Replace this with your logic to show quiz results or navigate to a result page
-            // For example,
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -400,7 +452,6 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
 class QuizResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Implement the UI to display the quiz results here
     return Scaffold(
       appBar: AppBar(
         title: Text("Quiz Results"),
