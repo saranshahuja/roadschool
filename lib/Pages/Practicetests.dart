@@ -35,7 +35,7 @@ class _PracticeTestsState extends State<PracticeTests> {
         title: const Text('Practice Tests',
           style: TextStyle(
           color: Colors.black, // Set the text color to white
-          fontSize: 26,
+          fontSize: 28,
         ),
       ),
       ),
@@ -88,7 +88,7 @@ class _PracticeTestsState extends State<PracticeTests> {
                   ),
                   children: [
                     TextSpan(
-                      text: 'Chapter ',
+                      text: 'Test ',
                     ),
                     TextSpan(
                       text: '${index + 1}', // Adjust this based on your data
