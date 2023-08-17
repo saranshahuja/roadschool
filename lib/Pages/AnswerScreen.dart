@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(AnswerScreen());
 }
 
 class Question {
@@ -11,7 +11,7 @@ class Question {
   Question(this.question, this.answer);
 }
 
-class MyApp extends StatelessWidget {
+class AnswerScreen extends StatelessWidget {
   final List<Question> questions = [
     Question('Question 1?', 'Answer 1.'),
     Question('Question 2?', 'Answer 2.'),

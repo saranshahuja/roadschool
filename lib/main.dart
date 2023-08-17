@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/Homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'Pages/AnswerScreen.dart';
 import 'Pages/Practicetests.dart';
 import 'Pages/SplashScreen.dart';
 // import 'Pages/learnChapters.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyApp(),
+      home: AnswerScreen(),
     );
   }
 }
