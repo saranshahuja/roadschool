@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import '../utils.dart';
 
-
 class progressScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,7 @@ class progressScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Container(
-        // progressscreens9B (0:3)
+        // progressscreenfSy (0:3)
         padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 358*fem),
         width: double.infinity,
         decoration: BoxDecoration (
@@ -25,9 +24,9 @@ class progressScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              // autogroupbxz7sS1 (U1JLoJ4boPDj8nZgZ7BxZ7)
+              // autogroupcsqhHcm (5xvEGFJDyzaZCV5wugcSQH)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 27*fem),
-              padding: EdgeInsets.fromLTRB(109*fem, 71.5*fem, 229*fem, 7.5*fem),
+              padding: EdgeInsets.fromLTRB(30*fem, 71.5*fem, 100*fem, 7.5*fem),
               width: double.infinity,
               height: 109*fem,
               decoration: BoxDecoration (
@@ -37,26 +36,18 @@ class progressScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Container(
-                    // vectorjUD (0:16)
-                    margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 23.82*fem, 5.2*fem),
-                    child: TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom (
-                        padding: EdgeInsets.zero,
-                      ),
-                      child: Container(
-                        width: 11.18*fem,
-                        height: 21.3*fem,
-                        child: Image.asset(
-                          'assets/images/vector-5Rj.png',
-                          width: 11.18*fem,
-                          height: 21.3*fem,
-                        ),
-                      ),
+                    // vectorMMj (0:16)
+                    margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 20*fem, 5.2*fem),
+                    width: 11.18*fem,
+                    height: 21.3*fem,
+                    child: Image.asset(
+                      'assets/page-1/images/vector.png',
+                      width: 11.18*fem,
+                      height: 21.3*fem,
                     ),
                   ),
                   Center(
-                    // level1practicetestQqF (0:15)
+                    // level1practiceteste5w (0:15)
                     child: Text(
                       'Level 1 Practice Test',
                       textAlign: TextAlign.center,
@@ -73,7 +64,7 @@ class progressScreen extends StatelessWidget {
               ),
             ),
             Container(
-              // group5591hJZ (0:18)
+              // group5591Wtq (0:18)
               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 27*fem),
               width: double.infinity,
               height: 71*fem,
@@ -94,7 +85,7 @@ class progressScreen extends StatelessWidget {
               ),
             ),
             Container(
-              // chapterlearningjW9 (8:87)
+              // chapterlearningBVB (8:87)
               margin: EdgeInsets.fromLTRB(23*fem, 0*fem, 0*fem, 285*fem),
               child: RichText(
                 text: TextSpan(
@@ -131,7 +122,7 @@ class progressScreen extends StatelessWidget {
               ),
             ),
             Container(
-              // chaptertestsShP (8:88)
+              // chaptertestsuT7 (8:88)
               margin: EdgeInsets.fromLTRB(20*fem, 0*fem, 0*fem, 0*fem),
               child: RichText(
                 text: TextSpan(
