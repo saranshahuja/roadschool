@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
-import '../utils.dart';
 import 'package:roadschool/Pages/Homepage.dart';
-class PracticeTests extends StatefulWidget {
-  @override
-  _PracticeTestsState createState() => _PracticeTestsState();
-}
 
-class _PracticeTestsState extends State<PracticeTests> {
+class learnChapters extends StatefulWidget {
+  const learnChapters({super.key});
+
+  @override
+  _learnChaptersState createState() => _learnChaptersState();
+}
+class _learnChaptersState extends State<learnChapters> {
   List<bool> chapterStatus = List.generate(10, (index) => false);
 
   @override
@@ -18,10 +18,11 @@ class _PracticeTestsState extends State<PracticeTests> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFC5E9BF),
+        backgroundColor: Color(0xFF034D91),
         leading: IconButton(
-          icon: Image.asset('assets/images/vector-5Rj.png', // Replace with the actual image path
-            color: Colors.black,
+          icon: Image.asset(
+            'assets/images/vector-5Rj.png', // Replace with the actual image path
+            color: Colors.white,
             height: 24, // Adjust the height as needed
             width: 24,  // Adjust the width as needed
           ),
@@ -32,19 +33,20 @@ class _PracticeTestsState extends State<PracticeTests> {
             );
           },
         ),
-        title: const Text('Practice Tests',
+        title: const Text(
+          'Learn Chapters',
           style: TextStyle(
-          color: Colors.black, // Set the text color to white
-          fontSize: 26,
+            color: Colors.white, // Set the text color to white
+            fontSize: 26,
+          ),
         ),
-      ),
       ),
       body: GridView.builder(
         itemCount: 10, // Number of items in the grid
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // Number of columns in the grid
           crossAxisSpacing: 1 * fem, // Spacing between columns
-          mainAxisSpacing: 1 * fem, // Spacing between rows
+          mainAxisSpacing: 0 * fem, // Spacing between rows
         ),
         itemBuilder: (context, index) {
           return buildGridItem(context, fem, ffem, index);
@@ -67,10 +69,10 @@ class _PracticeTestsState extends State<PracticeTests> {
       ),
       child: Container(
         width: 141 * fem,
-        height: 100 * fem,
+        height: 89 * fem,
         decoration: BoxDecoration(
-          border: Border.all(color: Color(0xff000000)),
-          color: const Color(0x5958bf47),
+          border: Border.all(color: const Color(0xff000000)),
+          color: const Color(0xffa6cdf2),
           borderRadius: BorderRadius.circular(15 * fem),
         ),
         child: Center(
@@ -87,7 +89,7 @@ class _PracticeTestsState extends State<PracticeTests> {
                     color: Color(0xff000000),
                   ),
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text: 'Chapter ',
                     ),
                     TextSpan(
@@ -102,7 +104,7 @@ class _PracticeTestsState extends State<PracticeTests> {
                   ],
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 chapterStatus[index] ? 'Complete' : 'Incomplete',
                 style: TextStyle(

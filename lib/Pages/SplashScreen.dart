@@ -146,7 +146,7 @@ class SplashScreenpage extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => HomePage()), // Navigate to HomePage
+                              MaterialPageRoute(builder: (context) => const HomePage()), // Navigate to HomePage
                             );
                           },
                           child: Container(
