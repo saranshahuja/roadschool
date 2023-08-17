@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/Practicetests.dart';
+import 'package:roadschool/Pages/learnChapters.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -44,6 +45,10 @@ class HomePage extends StatelessWidget {
                     height: 110,
                     child: ElevatedButton(
                       onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const learnChapters()), // Navigate to HomePage
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         side: const BorderSide(color: Colors.black),
