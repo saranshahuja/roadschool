@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(AnswerScreen());
+  runApp(AnswerSheet());
 }
 
 class Question {
   final String question;
   final String answer;
+  final String imagePath;
 
-  Question(this.question, this.answer);
+  Question(this.question, this.answer, this.imagePath);
 }
 
-class AnswerScreen extends StatelessWidget {
+class AnswerSheet extends StatelessWidget {
   final List<Question> questions = [
-    Question('Question 1?', 'Answer 1.'),
-    Question('Question 2?', 'Answer 2.'),
+    Question('What is your name?', 'My name is Akshit', 'assets/images/carque.png'),
+    Question('Question 2?', 'Answer 2.', 'images/image2.jpg'),
     // Add more questions...
-    Question('Question 20?', 'Answer 20.'),
+    Question('Question 20?', 'Answer 20.', 'images/image20.jpg'),
   ];
 
   @override
@@ -66,6 +67,8 @@ class _QuestionPageState extends State<QuestionPage> {
 
   @override
   Widget build(BuildContext context) {
+    double progress = (_currentIndex + 1) / widget.questions.length;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Question ${_currentIndex + 1}'),
@@ -76,16 +79,43 @@ class _QuestionPageState extends State<QuestionPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(height: 20.0),
+            Container(
+              height: 30.0,
+              child: Stack(
+                children: [
+                  LinearProgressIndicator(
+                    value: progress,
+                    backgroundColor: Colors.grey,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                  ),
+                  Positioned(
+                    left: progress * MediaQuery.of(context).size.width - 15.0,
+                    child: Image.asset(
+                      'assets/images/vector-5Rj.png',
+                      width: 30.0,
+                      height: 30.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20.0),
             Text(
               widget.questions[_currentIndex].question,
               style: TextStyle(fontSize: 18.0),
             ),
+            Image.asset(
+              widget.questions[_currentIndex].imagePath,
+              height: 350, // Set the desired height for the image
+              fit: BoxFit.cover,
+            ),
             SizedBox(height: 20.0),
             _showAnswer
                 ? Text(
-                    widget.questions[_currentIndex].answer,
-                    style: TextStyle(fontSize: 16.0, color: Colors.green),
-                  )
+              widget.questions[_currentIndex].answer,
+              style: TextStyle(fontSize: 16.0, color: Colors.green),
+            )
                 : Container(),
             SizedBox(height: 20.0),
             ElevatedButton(
@@ -118,5 +148,3 @@ class _QuestionPageState extends State<QuestionPage> {
     );
   }
 }
-
-
