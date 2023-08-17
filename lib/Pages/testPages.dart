@@ -15,186 +15,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
   bool _answered = false;
 
   final List<Map<String, dynamic>> _questions = [
-    {
-      'question': 'What does a red traffic light mean?',
-      'options': ['Stop', 'Go', 'Slow down', 'Turn left'],
-      'correctOption': 0,
-    },
-    {
-      'question': 'What should you do when you see a yield sign?',
-      'options': [
-        'Speed up',
-        'Come to a complete stop',
-        'Slow down and yield the right-of-way',
-        'Honk your horn'
-      ],
-      'correctOption': 2,
-    },
-    {
-      'question': 'What does a yellow traffic light mean?',
-      'options': [
-        'Slow down and prepare to stop',
-        'Speed up and cross the intersection quickly',
-        'Stop immediately',
-        'Change lanes'
-      ],
-      'correctOption': 0,
-    },
-    {
-      'question': 'What does a green traffic light mean?',
-      'options': ['Stop', 'Yield', 'Go', 'Slow down'],
-      'correctOption': 2,
-    },
-    {
-      'question': 'What does a flashing red traffic light mean?',
-      'options': [
-        'Stop and proceed when safe',
-        'Go without stopping',
-        'Slow down and proceed with caution',
-        'Make a U-turn'
-      ],
-      'correctOption': 0,
-    },
-    {
-      'question': 'What does a broken white line on the road mean?',
-      'options': [
-        'No passing in either direction',
-        'Passing is allowed from one side',
-        'Passing is allowed from both sides',
-        'No parking'
-      ],
-      'correctOption': 1,
-    },
-    {
-      'question': 'What does a round traffic sign mean?',
-      'options': [
-        'Stop',
-        'Yield',
-        'Warning',
-        'Speed limit'
-      ],
-      'correctOption': 2,
-    },
-    {
-      'question': 'What does a diamond-shaped traffic sign indicate?',
-      'options': [
-        'Construction zone',
-        'School zone',
-        'Railroad crossing',
-        'No entry'
-      ],
-      'correctOption': 0,
-    },
-    {
-      'question': 'What should you do when an emergency vehicle is approaching with its lights and sirens on?',
-      'options': [
-        'Maintain your speed and position',
-        'Pull over to the side and stop',
-        'Honk your horn to alert the driver',
-        'Speed up and get out of the way'
-      ],
-      'correctOption': 1,
-    },
-    {
-      'question': 'What does a rectangular blue sign indicate?',
-      'options': [
-        'Speed limit',
-        'Exit or direction sign',
-        'School zone',
-        'Construction zone'
-      ],
-      'correctOption': 1,
-    },
-    {
-      'question': 'What is the maximum speed limit on highways in this area?',
-      'options': [
-        '55 mph',
-        '65 mph',
-        '70 mph',
-        '75 mph'
-      ],
-      'correctOption': 2,
-    },
-    {
-      'question': 'What should you do when approaching a school bus with flashing red lights?',
-      'options': [
-        'Pass quickly on the left',
-        'Slow down and proceed with caution',
-        'Honk your horn to warn the children',
-        'Speed up to pass before it stops'
-      ],
-      'correctOption': 1,
-    },
-    {
-      'question': 'What does a yellow diamond-shaped sign with black symbols indicate?',
-      'options': [
-        'School zone',
-        'Construction zone',
-        'Warning of deer crossing',
-        'Railroad crossing'
-      ],
-      'correctOption': 2,
-    },
-    {
-      'question': 'What does a white rectangular sign with red letters indicate?',
-      'options': [
-        'No U-turn',
-        'Stop',
-        'No entry',
-        'Yield'
-      ],
-      'correctOption': 0,
-    },
-    {
-      'question': 'What does a green arrow signal mean?',
-      'options': [
-        'Go in the direction of the arrow',
-        'Yield to oncoming traffic',
-        'Slow down and prepare to stop',
-        'No left turn'
-      ],
-      'correctOption': 0,
-    },
-    {
-      'question': 'What should you do if you are driving and it starts to rain heavily?',
-      'options': [
-        'Turn on your high beams',
-        'Speed up to get through the rain faster',
-        'Slow down and increase your following distance',
-        'Keep your windshield wipers off'
-      ],
-      'correctOption': 2,
-    },
-    {
-      'question': 'What should you do if you miss your exit on the highway?',
-      'options': [
-        'Back up on the highway',
-        'Make a U-turn on the highway',
-        'Continue to the next exit',
-        'Stop and wait for assistance'
-      ],
-      'correctOption': 2,
-    },
-    {
-      'question': 'What does a solid white line at an intersection indicate?',
-      'options': [
-        'Stop and yield the right-of-way',
-        'Slow down and proceed with caution',
-        'Change lanes',
-        'Go straight or turn'
-      ],
-      'correctOption': 3,
-    },
-    {
-      'question': 'What should you do when you approach a flashing yellow traffic signal?',
-      'options': [
-        'Stop and wait for the light to turn green',
-        'Slow down and proceed with caution',
-        'Speed up to clear the intersection quickly',
-        'Stop only if other vehicles are present'
-      ],
-      'correctOption': 1,
-    },
+    // ... your question data ...
   ];
 
   Widget _buildOption(String optionText, int index) {
@@ -219,8 +40,10 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
         child: ElevatedButton(
           onPressed: () {
             setState(() {
-              _selectedOptionIndex = index;
-              _answered = true;
+              if (!_answered) {
+                _selectedOptionIndex = index;
+                _answered = true;
+              }
             });
           },
           style: ElevatedButton.styleFrom(
@@ -274,7 +97,6 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -286,8 +108,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
               setState(() {
                 _loading = false;
                 _currentQuestion = 0;
-                _selectedOptionIndex
-                = -1;
+                _selectedOptionIndex = -1;
                 _answered = false;
               });
             },
@@ -369,7 +190,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                       onPressed: () {
                         int correctAnswers = 0;
                         for (var question in _questions) {
-                          if (question['correctOption'] == question['selectedOption']) {
+                          if (question['correctOption'] == _selectedOptionIndex) {
                             correctAnswers++;
                           }
                         }
