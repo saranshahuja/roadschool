@@ -44,16 +44,12 @@ class HomePage extends StatelessWidget {
                     height: 110,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PracticeTests()),
-                        );
                       },
                       style: ElevatedButton.styleFrom(
-                        side: BorderSide(color: Colors.black),
-                        backgroundColor: Color(0x590071DA), // Set button background color
+                        side: const BorderSide(color: Colors.black),
+                        backgroundColor: const Color(0x590071DA), // Set button background color
                         padding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 20), // Adjust padding
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 20), // Adjust padding
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),)
                       ),
@@ -62,7 +58,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           Image.asset('assets/images/Study11.png', width: 55, height: 55),
                           SizedBox(width: 12),
-                          Text(
+                          const Text(
                             'Learn chapters',
                             style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
                           ),
@@ -80,13 +76,16 @@ class HomePage extends StatelessWidget {
                     height: 110,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Handle Practice test button press
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PracticeTests()),
+                        );  // Handle Practice test button press
                       },
                       style: ElevatedButton.styleFrom(
-                        side: BorderSide(color: Colors.black),
+                        side: const BorderSide(color: Colors.black),
                         backgroundColor: Color(0x500071DA), // Set button background color
                         padding:
-                        EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Adjust padding
+                        const EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Adjust padding
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),)
                       ),
@@ -95,7 +94,7 @@ class HomePage extends StatelessWidget {
                           children: [
                             Image.asset('assets/images/image-45.png', width: 55, height: 55),
                             SizedBox(width: 12),
-                            Text(
+                            const Text(
                               'Practice Tests',
                               style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
                             ),
@@ -116,8 +115,8 @@ class HomePage extends StatelessWidget {
                         // Handle Course Progress button press
                       },
                       style: ElevatedButton.styleFrom(
-                        side: BorderSide(color: Colors.black),
-                        backgroundColor: Color(0x500071DA), // Set button background color
+                        side: const BorderSide(color: Colors.black),
+                        backgroundColor: const Color(0x500071DA), // Set button background color
                         padding:
                         const EdgeInsets.symmetric(horizontal: 15, vertical: 20), // Adjust padding
                           shape: RoundedRectangleBorder(
@@ -127,8 +126,8 @@ class HomePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset('assets/images/progress1.png', width: 55, height: 55),
-                            SizedBox(width: 12),
-                            Text(
+                            const SizedBox(width: 12),
+                            const Text(
                               'Course Progress',
                               style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
                             ),
