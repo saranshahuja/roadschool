@@ -41,7 +41,7 @@ class progressScreen extends StatelessWidget {
                     width: 11.18*fem,
                     height: 21.3*fem,
                     child: Image.asset(
-                      'assets/page-1/images/vector.png',
+                      'assets/images/vector.png',
                       width: 11.18*fem,
                       height: 21.3*fem,
                     ),
@@ -109,6 +109,43 @@ class progressScreen extends StatelessWidget {
                     ),
                     TextSpan(
                       text: 'LEARNING:',
+                      style: SafeGoogleFont (
+                        'Inter',
+                        fontSize: 25*ffem,
+                        fontWeight: FontWeight.w700,
+                        height: 1.2125*ffem/fem,
+                        color: Color(0xff000000),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              // chaptertestsuT7 (8:88)
+              margin: EdgeInsets.fromLTRB(20*fem, 0*fem, 0*fem, 0*fem),
+              child: RichText(
+                text: TextSpan(
+                  style: SafeGoogleFont (
+                    'Inter',
+                    fontSize: 25*ffem,
+                    fontWeight: FontWeight.w400,
+                    height: 1.2102272797*ffem/fem,
+                    color: Color(0xff000000),
+                  ),
+                  children: [
+                    TextSpan(
+                      text: 'Chapter ',
+                      style: SafeGoogleFont (
+                        'Inter',
+                        fontSize: 25*ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2125*ffem/fem,
+                        color: Color(0xff000000),
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'TESTS:',
                       style: SafeGoogleFont (
                         'Inter',
                         fontSize: 25*ffem,
