@@ -1,65 +1,68 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(AnswerSheet());
+  runApp(AnswerSheetApp());
 }
 
-class Question {
-  final String question;
-  final String answer;
-  final String imagePath;
-
-  Question(this.question, this.answer, this.imagePath);
-}
-
-class AnswerSheet extends StatelessWidget {
-  final List<Question> questions = [
-    Question('What is your name?', 'My name is Akshit', 'assets/images/carque.png'),
-    Question('Question 2?', 'Answer 2.', 'images/image2.jpg'),
-    // Add more questions...
-    Question('Question 20?', 'Answer 20.', 'images/image20.jpg'),
-  ];
-
+class AnswerSheetApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: QuestionPage(questions),
+      title: 'Answer Sheet App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: AnswerSheetPage(),
     );
   }
 }
 
-class QuestionPage extends StatefulWidget {
-  final List<Question> questions;
-
-  QuestionPage(this.questions);
-
+class AnswerSheetPage extends StatefulWidget {
   @override
-  _QuestionPageState createState() => _QuestionPageState();
+  _AnswerSheetPageState createState() => _AnswerSheetPageState();
 }
 
-class _QuestionPageState extends State<QuestionPage> {
-  int _currentIndex = 0;
+class _AnswerSheetPageState extends State<AnswerSheetPage> {
+  int _currentQuestionIndex = 0;
+  List<String> _questions = [
+    "Question 1: What does a red traffic light mean ?",
+    "Question 2: What should you do when you see a yield sign ?",
+    "Question 3: What does a yellow traffic light mean ?",
+    "Question 4: What does a yellow traffic light mean ?",
+    "Question 5: What does a yellow traffic light mean ?",
+
+    // ... Add more questions
+  ];
+  List<String> _answers = [
+    "Answer 1. Stop",
+    "Answer 2. Slow down and yield the right-of-way",
+    "Answer 3. Slow down and prepare to stop",
+    "Answer 4. Slow down and prepare to stop",
+    "Answer 5. Slow down and prepare to stop",
+
+    // ... Add more answers
+  ];
   bool _showAnswer = false;
 
   void _showNextQuestion() {
-    if (_currentIndex < widget.questions.length - 1) {
-      setState(() {
-        _currentIndex++;
+    setState(() {
+      if (_currentQuestionIndex < _questions.length - 1) {
+        _currentQuestionIndex++;
         _showAnswer = false;
-      });
-    }
+      }
+    });
   }
 
   void _showPreviousQuestion() {
-    if (_currentIndex > 0) {
-      setState(() {
-        _currentIndex--;
+    setState(() {
+      if (_currentQuestionIndex > 0) {
+        _currentQuestionIndex--;
         _showAnswer = false;
-      });
-    }
+      }
+    });
   }
 
-  void _toggleAnswerVisibility() {
+  void _toggleShowAnswer() {
     setState(() {
       _showAnswer = !_showAnswer;
     });
@@ -67,83 +70,74 @@ class _QuestionPageState extends State<QuestionPage> {
 
   @override
   Widget build(BuildContext context) {
-    double progress = (_currentIndex + 1) / widget.questions.length;
+    double progress = (_currentQuestionIndex + 1) / _questions.length;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Question ${_currentIndex + 1}'),
+        title: Text('Answer Sheet App'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(height: 20.0),
-            Container(
-              height: 30.0,
-              child: Stack(
-                children: [
-                  LinearProgressIndicator(
-                    value: progress,
-                    backgroundColor: Colors.grey,
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+            SizedBox(height: 16),
+            Stack(
+              alignment: Alignment.centerLeft,
+              children: [
+                LinearProgressIndicator(
+                  value: progress,
+                  minHeight: 27, // Adjust this height as needed
+                ),
+                Positioned(
+                  left: MediaQuery.of(context).size.width * progress,
+                  child: Image.asset(
+                    'assets/images/iconwtbg.png', // Provide your image path
+                    height: 40,
+                    width: 40,
                   ),
-                  Positioned(
-                    left: progress * MediaQuery.of(context).size.width - 15.0,
-                    child: Image.asset(
-                      'assets/images/vector-5Rj.png',
-                      width: 30.0,
-                      height: 30.0,
-                    ),
-                  ),
-                ],
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                _questions[_currentQuestionIndex],
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 20.0),
-            Text(
-              widget.questions[_currentIndex].question,
-              style: TextStyle(fontSize: 18.0),
+            SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: _showAnswer
+                  ? Text(
+                _answers[_currentQuestionIndex],
+                style: TextStyle(fontSize: 16),
+              )
+                  : Container(),
             ),
-            Image.asset(
-              widget.questions[_currentIndex].imagePath,
-              height: 350, // Set the desired height for the image
-              fit: BoxFit.cover,
-            ),
-            SizedBox(height: 20.0),
-            _showAnswer
-                ? Text(
-              widget.questions[_currentIndex].answer,
-              style: TextStyle(fontSize: 16.0, color: Colors.green),
-            )
-                : Container(),
-            SizedBox(height: 20.0),
+            SizedBox(height: 16),
             ElevatedButton(
-              onPressed: _toggleAnswerVisibility,
-              child: Text('Show Answer'),
+              onPressed: _toggleShowAnswer,
+              child: Text(_showAnswer ? 'Hide Answer' : 'Show Answer'),
+            ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: _showPreviousQuestion,
+                  child: Text('Previous'),
+                ),
+                SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: _showNextQuestion,
+                  child: Text('Next'),
+                ),
+              ],
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_back),
-            label: 'Previous',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_forward),
-            label: 'Next',
-          ),
-        ],
-        onTap: (index) {
-          if (index == 0) {
-            _showPreviousQuestion();
-          } else if (index == 1) {
-            _showNextQuestion();
-          }
-        },
       ),
     );
   }
