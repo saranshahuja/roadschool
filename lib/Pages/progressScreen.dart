@@ -31,7 +31,7 @@ class ProgressScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 109 * fem,
                 decoration: BoxDecoration(
-                  color: Color(0xffd9d9d9),
+                  color: Color(0xFFFFFF),
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -116,9 +116,9 @@ class ProgressScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: BarChart(
