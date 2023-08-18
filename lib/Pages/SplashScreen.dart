@@ -23,7 +23,7 @@ class SplashScreenpage extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration (
               color: const Color(0xffffffff),
-              borderRadius: BorderRadius.circular(55*fem),
+              borderRadius: BorderRadius.circular(0*fem),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
