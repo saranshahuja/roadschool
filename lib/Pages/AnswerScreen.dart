@@ -40,14 +40,35 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
     'assets/images/twoway.png',
   ];
   bool _showAnswer = false;
+
   void _showNextQuestion() {
     setState(() {
       if (_currentQuestionIndex < _questions.length - 1) {
         _currentQuestionIndex++;
         _showAnswer = false;
+      } else {
+        // Display a message indicating completion
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Congratulations!'),
+              content: Text('You have learned chapter 1.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.popUntil(context, ModalRoute.withName('/')); // Pop all routes until home screen
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
       }
     });
   }
+
   void _showPreviousQuestion() {
     setState(() {
       if (_currentQuestionIndex > 0) {
@@ -69,7 +90,7 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Answer Sheet App'),
+        title: Text('Learn Chapter 7'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -82,6 +103,7 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
                 LinearProgressIndicator(
                   value: progress,
                   minHeight: 27,
+                  color: Colors.green,
                 ),
                 Positioned(
                   left: MediaQuery.of(context).size.width * progress,
@@ -92,12 +114,12 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
                   ),
                 ),
                 Positioned(
-                  top: 3.5, // Adjust the top position as needed
-                  right: 0, // Adjust the right position as needed
+                  top: 7,
+                  right: 0,
                   child: Image.asset(
-                    'assets/images/flag.png', // Replace with the actual path
-                    height: 20, // Adjust the image height as needed
-                    width: 20, // Adjust the image width as needed
+                    'assets/images/flag.png',
+                    height: 20,
+                    width: 20,
                   ),
                 ),
               ],
@@ -113,8 +135,8 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
             SizedBox(height: 16),
             Image.asset(
               _imagePaths[_currentQuestionIndex % _imagePaths.length],
-              height: 450,
-              width: double.infinity,
+              height: 251,
+              width: 250,
               fit: BoxFit.cover,
             ),
             SizedBox(height: 16),
