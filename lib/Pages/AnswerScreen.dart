@@ -91,6 +91,15 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
                     width: 40,
                   ),
                 ),
+                Positioned(
+                  top: 3.5, // Adjust the top position as needed
+                  right: 0, // Adjust the right position as needed
+                  child: Image.asset(
+                    'assets/images/flag.png', // Replace with the actual path
+                    height: 20, // Adjust the image height as needed
+                    width: 20, // Adjust the image width as needed
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 16),
@@ -104,8 +113,8 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
             SizedBox(height: 16),
             Image.asset(
               _imagePaths[_currentQuestionIndex % _imagePaths.length],
-              height: 310,
-              width: 300,
+              height: 450,
+              width: double.infinity,
               fit: BoxFit.cover,
             ),
             SizedBox(height: 16),
