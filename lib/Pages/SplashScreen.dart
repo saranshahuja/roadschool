@@ -113,18 +113,19 @@ class SplashScreenpage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 8*fem, 0*fem),
-                        constraints: BoxConstraints (
-                          maxWidth: 328*fem,
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 8 * fem, 0 * fem),
+                        constraints: BoxConstraints(
+                          maxWidth: 328 * fem,
                         ),
                         child: Text(
                           'Learn and test yourself on the ICBC questions that you will encounter on the official ICBC Learner’s Test.',
                           textAlign: TextAlign.center,
-                          style: SafeGoogleFont (
+                          style: SafeGoogleFont(
                             'Inter',
-                            fontSize: 22*ffem,
+                            fontSize: 22 * ffem,
                             fontWeight: FontWeight.w700,
-                            height: 1.2125*ffem/fem,
+                            height: 1.2125 * ffem / fem,
                             color: const Color(0xff000000),
                           ),
                         ),
