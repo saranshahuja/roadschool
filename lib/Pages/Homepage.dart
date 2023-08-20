@@ -134,7 +134,7 @@ class HomePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => progressScreen()), // Navigate to HomePage
+                          MaterialPageRoute(builder: (context) => ProgressScreen()), // Navigate to HomePage
                         );
                         // Handle Course Progress button press
                       },
