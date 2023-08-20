@@ -25,25 +25,21 @@ class AnswerSheetPage extends StatefulWidget {
 class _AnswerSheetPageState extends State<AnswerSheetPage> {
   int _currentQuestionIndex = 0;
   List<String> _questions = [
-    "Question 1: What does a red traffic light mean ?",
-    "Question 2: What should you do when you see a yield sign ?",
-    "Question 3: What does a yellow traffic light mean ?",
-    "Question 4: What does a yellow traffic light mean ?",
-    "Question 5: What does a yellow traffic light mean ?",
-
-    // ... Add more questions
+    "Question 1: This sign means?",
+    "Question 2: This sign means?",
+    "Question 3: This sign means?",
   ];
   List<String> _answers = [
-    "Answer 1. Stop",
-    "Answer 2. Slow down and yield the right-of-way",
-    "Answer 3. Slow down and prepare to stop",
-    "Answer 4. Slow down and prepare to stop",
-    "Answer 5. Slow down and prepare to stop",
-
-    // ... Add more answers
+    "Answer 1. Two-way left turn lane.",
+    "Answer 2. Playground nearby - drive with caution",
+    "Answer 3. Railway crossing ahead - be prepared to stop",
+  ];
+  List<String> _imagePaths = [
+    'assets/images/playground.png',
+    'assets/images/railway.png',
+    'assets/images/twoway.png',
   ];
   bool _showAnswer = false;
-
   void _showNextQuestion() {
     setState(() {
       if (_currentQuestionIndex < _questions.length - 1) {
@@ -52,7 +48,6 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
       }
     });
   }
-
   void _showPreviousQuestion() {
     setState(() {
       if (_currentQuestionIndex > 0) {
@@ -86,12 +81,12 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
               children: [
                 LinearProgressIndicator(
                   value: progress,
-                  minHeight: 27, // Adjust this height as needed
+                  minHeight: 27,
                 ),
                 Positioned(
                   left: MediaQuery.of(context).size.width * progress,
                   child: Image.asset(
-                    'assets/images/iconwtbg.png', // Provide your image path
+                    'assets/images/iconwtbg.png',
                     height: 40,
                     width: 40,
                   ),
@@ -107,19 +102,32 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
               ),
             ),
             SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: _showAnswer
-                  ? Text(
-                _answers[_currentQuestionIndex],
-                style: TextStyle(fontSize: 16),
-              )
-                  : Container(),
+            Image.asset(
+              _imagePaths[_currentQuestionIndex % _imagePaths.length],
+              height: 310,
+              width: 300,
+              fit: BoxFit.cover,
             ),
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: _toggleShowAnswer,
               child: Text(_showAnswer ? 'Hide Answer' : 'Show Answer'),
+            ),
+            SizedBox(height: 16),
+            Visibility(
+              visible: _showAnswer,
+              child: Container(
+                color: Colors.green,
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  _answers[_currentQuestionIndex],
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
             SizedBox(height: 16),
             Row(
