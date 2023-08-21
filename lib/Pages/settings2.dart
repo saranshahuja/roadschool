@@ -62,11 +62,11 @@ class SettingPage extends StatelessWidget {
                   title: 'Normal',
                   onPressed: () {
                     // TODO: Implement notification settings
-                  }, fontSize: 20,
+                  }, fontSize: 24,
                 ),
                 SettingsButton(
                   title: 'Large',
-                  fontSize: 24,
+                  fontSize: 32,
                   onPressed: () {
                     // TODO: Implement about us page
                   },
