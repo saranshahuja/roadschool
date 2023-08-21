@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 
 
@@ -21,7 +22,7 @@ class ChapterReviewPage extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                Image.asset('assets/images/iconwtbg.png'), // Added image path
+                Image.asset('assets/images/iconwtbg.png', width: 50.w,), // Added image path
                 SizedBox(height: 10),
                 Text(
                   'Congratulations!',
