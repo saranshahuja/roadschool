@@ -38,7 +38,7 @@ class ProgressScreen extends StatelessWidget {
                   children: [
                     Container(
                       margin:
-                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 20 * fem, 5.2 * fem),
+                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 30 * fem, 5.2 * fem),
                       width: 11.18 * fem,
                       height: 21.3 * fem,
                       child: Image.asset(
