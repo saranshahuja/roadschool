@@ -8,6 +8,7 @@ import 'Pages/SplashScreen.dart';
 // import 'Pages/learnChapters.dart';
 import 'Pages/chapterReveiwScreen.dart';
 import 'Pages/progressScreen.dart';
+import 'Pages/settings.dart';
 import 'Pages/testPages.dart';
 import 'firebase_options.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: ChapterReviewPage(),
+        home: SettingsApp(),
       );
     });
   }
