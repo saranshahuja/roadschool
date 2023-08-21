@@ -40,25 +40,78 @@ class AboutUsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            DropdownButton<String>(
-              value: 'Terms and Conditions',
-              onChanged: (newValue) {},
-              items: [
-                DropdownMenuItem<String>(
-                  value: 'Terms and Conditions',
-                  child: Text(
+            Container(
+              width: 300,
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
                     'Terms and Conditions',
-                    style: TextStyle(fontSize: 32),
+                    style: TextStyle(fontSize: 32, color: Colors.white),
                   ),
-                ),
-                DropdownMenuItem<String>(
-                  value: 'Policies',
-                  child: Text(
+                  SizedBox(height: 10),
+                  DropdownButton<String>(
+                    value: 'Condition 1',
+                    onChanged: (newValue) {},
+                    items: [
+                      'Condition 1',
+                      'Condition 2',
+                      'Condition 3',
+                      // Add more conditions as needed
+                    ].map((condition) {
+                      return DropdownMenuItem<String>(
+                        value: condition,
+                        child: Text(
+                          condition,
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              width: 300,
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
                     'Policies',
-                    style: TextStyle(fontSize: 32),
+                    style: TextStyle(fontSize: 32, color: Colors.white),
                   ),
-                ),
-              ],
+                  SizedBox(height: 10),
+                  DropdownButton<String>(
+                    value: 'Policy 1',
+                    onChanged: (newValue) {},
+                    items: [
+                      'Policy 1',
+                      'Policy 2',
+                      'Policy 3',
+                      // Add more policies as needed
+                    ].map((policy) {
+                      return DropdownMenuItem<String>(
+                        value: policy,
+                        child: Text(
+                          policy,
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
