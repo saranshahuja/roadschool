@@ -66,6 +66,7 @@ class _SettingPageState extends State<SettingPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   NotificationButton(
+
                     title: 'Off',
 
                     isActive: !isNotificationsOn,
