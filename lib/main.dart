@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/Homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:roadschool/Pages/aboutus.dart';
+import 'package:roadschool/Pages/settings.dart';
 import 'package:roadschool/Pages/settings2.dart';
 import 'package:roadschool/Pages/settings3.dart';
 import 'Pages/AnswerScreen.dart';
@@ -9,7 +9,6 @@ import 'Pages/Practicetests.dart';
 import 'Pages/SplashScreen.dart';
 // import 'Pages/learnChapters.dart';
 import 'Pages/progressScreen.dart';
-import 'Pages/settings.dart';
 import 'Pages/testPages.dart';
 import 'firebase_options.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -34,7 +33,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: AboutUsPage(),
+      home:Settingsthree(),
     );
   }
 }
+// d

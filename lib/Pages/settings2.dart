@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:roadschool/Pages/Homepage.dart';
 
 void main() {
   runApp(Settingstwo());
@@ -19,57 +18,63 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Color(0xFF034D91),
-      leading: IconButton(
-        icon: Image.asset(
-          'assets/images/vector-5Rj.png', // Replace with the actual image path
-          color: Colors.white,
-          height: 24, // Adjust the height as needed
-          width: 24,  // Adjust the width as needed //change
+        backgroundColor: Color(0xFF034D91),
+        leading: IconButton(
+          icon: Image.asset(
+            'assets/images/vector-5Rj.png',
+            color: Colors.white,
+            height: 24,
+            width: 24,
+          ),
+          onPressed: () {
+            Navigator.pop(context); // Go back to the previous page
+          },
         ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SettingPage()), // Navigate to HomePage
-          );
-        },
-      ),
         title: Text('Font Size'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(30.0),
+          const Padding(
+            padding: EdgeInsets.all(30.0),
             child: Text(
               '*Changes will not affect image size.',
               style: TextStyle(fontSize: 20, color: Colors.black),
             ),
           ),
-          SizedBox(height: 20),
-          Center( // Centering the entire Column containing buttons
+          SizedBox(height: 40),
+          Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SettingsButton(
                   title: 'Small',
                   fontSize: 18,
+                  textFontSize: 14,
                   onPressed: () {
                     // TODO: Implement font size settings
                   },
+                  borderRadius: BorderRadius.circular(20),
                 ),
+                SizedBox(height: 50), // Increased spacing
                 SettingsButton(
                   title: 'Normal',
+                  fontSize: 18,
+                  textFontSize: 18,
                   onPressed: () {
-                    // TODO: Implement notification settings
-                  }, fontSize: 24,
+                    // TODO: Implement font size settings
+                  },
+                  borderRadius: BorderRadius.circular(20),
                 ),
+                SizedBox(height: 50), // Increased spacing
                 SettingsButton(
                   title: 'Large',
-                  fontSize: 32,
+                  fontSize: 18,
+                  textFontSize: 24,
                   onPressed: () {
-                    // TODO: Implement about us page
+                    // TODO: Implement font size settings
                   },
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ],
             ),
@@ -102,27 +107,42 @@ class SettingPage extends StatelessWidget {
 class SettingsButton extends StatelessWidget {
   final String title;
   final double fontSize;
+  final double textFontSize;
   final VoidCallback onPressed;
+  final BorderRadius? borderRadius;
+  final double width; // Add this property
 
   SettingsButton({
     required this.title,
     required this.fontSize,
+    required this.textFontSize,
     required this.onPressed,
+    this.borderRadius,
+    this.width = double.infinity, // Default width is set to match the parent width
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
+      width: 320, // Set the width of the button
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           primary: Colors.blue,
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 70),
+          padding: EdgeInsets.symmetric(vertical: 20),
+          shape: RoundedRectangleBorder(
+            borderRadius: borderRadius ?? BorderRadius.circular(0),
+          ),
         ),
-        child: Text(
-          title,
-          style: TextStyle(fontSize: fontSize),
+        child: Container(
+          width: double.infinity,
+          child: Center(
+            child: Text(
+              title,
+              style: TextStyle(fontSize: textFontSize),
+            ),
+          ),
         ),
       ),
     );
