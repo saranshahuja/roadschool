@@ -37,19 +37,19 @@ class SettingPage extends StatelessWidget {
         title: Text('Font Size'),
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.all(30.0),
             child: Text(
-              'Changes will not affect image size.',
+              '*Changes will not affect image size.',
               style: TextStyle(fontSize: 20, color: Colors.black),
             ),
           ),
           SizedBox(height: 20),
           Center( // Centering the entire Column containing buttons
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SettingsButton(
                   title: 'Small',
