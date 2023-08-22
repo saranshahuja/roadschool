@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toggle_switch/toggle_switch.dart'; // Import the ToggleSwitch package
 
 void main() {
   runApp(Settingsthree());
@@ -23,8 +24,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  bool isNotificationsOn = false;
-  TimeOfDay selectedTime = TimeOfDay(hour: 8, minute: 0); // Default time
+  int notificationStatus = 0; // 0: Off, 1: On
 
   @override
   Widget build(BuildContext context) {
@@ -32,64 +32,85 @@ class _SettingPageState extends State<SettingPage> {
       appBar: AppBar(
         backgroundColor: Color(0xFF034D91),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
           onPressed: () {
-            Navigator.pop(context); // Navigate back to the previous page
+            Navigator.pop(context);
           },
         ),
         title: Text('Notifications'),
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Allow for notifications:',
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(height: 10),
-              Switch(
-                value: isNotificationsOn,
-                onChanged: (newValue) {
-                  setState(() {
-                    isNotificationsOn = newValue;
-                  });
-                },
-              ),
-              SizedBox(height: 40),
-              Text(
-                'Schedule notification:',
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(height: 10),
-              DropdownButton<TimeOfDay>(
-                value: selectedTime,
-                onChanged: (newValue) {
-                  setState(() {
-                    selectedTime = newValue!;
-                  });
-                },
-                hint: Text('Select time'),
-                style: TextStyle(
-                  color: Colors.black, // Text color
-                  fontSize: 20,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Allow for notifications',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 40),
+            ToggleSwitch(
+              minWidth: 100.0,
+              initialLabelIndex: notificationStatus,
+              cornerRadius: 20,
+              // activeBgColor: Colors.blue,
+              activeFgColor: Colors.white,
+              inactiveBgColor: Colors.grey,
+              inactiveFgColor: Colors.white,
+              labels: ['Off', 'On'],
+              onToggle: (index) {
+                setState(() {
+                  notificationStatus = index!;
+                });
+              },
+            ),
+
+            SizedBox(height: 40),
+            Text(
+              'Schedule notification',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 20),
+            DropdownButton<String>(
+              value: 'Set time',
+              onChanged: (newValue) {
+                // Handle the dropdown change
+              },
+              items: const [
+                DropdownMenuItem<String>(
+                  value: 'Set time',
+                  child: Text('Set time'),
                 ),
-                items: List.generate(
-                  24,
-                      (index) {
-                    final time = TimeOfDay(hour: index, minute: 0);
-                    return DropdownMenuItem<TimeOfDay>(
-                      value: time,
-                      child: Text(time.format(context)),
-                    );
-                  },
+                DropdownMenuItem<String>(
+                  value: '8:00',
+                  child: Text('8:00'),
                 ),
-              ),
-            ],
-          ),
+                DropdownMenuItem<String>(
+                  value: '9:00',
+                  child: Text('9:00'),
+                ),
+                  DropdownMenuItem<String>(
+                  value: '12:00',
+                  child: Text('12:00'),
+                ),
+                DropdownMenuItem<String>(
+                  value: '13:00',
+                  child: Text('13:00'),
+                ),
+                DropdownMenuItem<String>(
+                  value: '15:00',
+                  child: Text('15:00'),
+                ),
+                DropdownMenuItem<String>(
+                  value: '20:00',
+                  child: Text('20:00'),
+                ),
+                // Add more time options here
+              ],
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
