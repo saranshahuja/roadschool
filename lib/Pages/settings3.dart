@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toggle_switch/toggle_switch.dart'; // Import the ToggleSwitch package
 
 void main() {
   runApp(Settingsthree());
@@ -23,8 +24,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  bool isNotificationsOn = false;
-  TimeOfDay selectedTime = TimeOfDay(hour: 8, minute: 0); // Default time
+  int notificationStatus = 0; // 0: Off, 1: On
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +32,12 @@ class _SettingPageState extends State<SettingPage> {
       appBar: AppBar(
         backgroundColor: Color(0xFF034D91),
         leading: IconButton(
-          icon: Image.asset(
-            'assets/images/vector-5Rj.png', // Replace with the actual image path
+          icon: Icon(
+            Icons.arrow_back,
             color: Colors.white,
-            height: 24, // Adjust the height as needed
-            width: 24, // Adjust the width as needed
           ),
           onPressed: () {
-            Navigator.pop(context); // Navigate back to the previous page
+            Navigator.pop(context);
           },
         ),
         title: Text('Notifications'),
@@ -53,69 +51,64 @@ class _SettingPageState extends State<SettingPage> {
               style: TextStyle(fontSize: 24),
             ),
             SizedBox(height: 40),
-            Container(
-              width: 278,
-              height: 55,
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.blue, // Make the box blue
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  NotificationButton(
-
-                    title: 'Off',
-
-                    isActive: !isNotificationsOn,
-                    onPressed: () {
-                      setState(() {
-                        isNotificationsOn = false;
-                      });
-                    },
-                  ),
-                  NotificationButton(
-                    title: 'On',
-                    isActive: isNotificationsOn,
-                    onPressed: () {
-                      setState(() {
-                        isNotificationsOn = true;
-                      });
-                    },
-                  ),
-                ],
-              ),
+            ToggleSwitch(
+              minWidth: 100.0,
+              initialLabelIndex: notificationStatus,
+              cornerRadius: 20,
+              // activeBgColor: Colors.blue,
+              activeFgColor: Colors.white,
+              inactiveBgColor: Colors.grey,
+              inactiveFgColor: Colors.white,
+              labels: ['Off', 'On'],
+              onToggle: (index) {
+                setState(() {
+                  notificationStatus = index!;
+                });
+              },
             ),
+
             SizedBox(height: 40),
             Text(
               'Schedule notification',
               style: TextStyle(fontSize: 24),
             ),
             SizedBox(height: 20),
-            DropdownButton<TimeOfDay>(
-              value: selectedTime,
+            DropdownButton<String>(
+              value: 'Set time',
               onChanged: (newValue) {
-                setState(() {
-                  selectedTime = newValue!;
-                });
+                // Handle the dropdown change
               },
-              hint: Text('Select time'),
-              style: TextStyle(
-                color: Colors.black, // Text color
-                fontSize: 20,
-              ),
-              items: List.generate(
-                24,
-                    (index) {
-                  final time = TimeOfDay(hour: index, minute: 0);
-                  return DropdownMenuItem<TimeOfDay>(
-                    value: time,
-                    child: Text(time.format(context)),
-                  );
-                },
-              ),
+              items: const [
+                DropdownMenuItem<String>(
+                  value: 'Set time',
+                  child: Text('Set time'),
+                ),
+                DropdownMenuItem<String>(
+                  value: '8:00',
+                  child: Text('8:00'),
+                ),
+                DropdownMenuItem<String>(
+                  value: '9:00',
+                  child: Text('9:00'),
+                ),
+                  DropdownMenuItem<String>(
+                  value: '12:00',
+                  child: Text('12:00'),
+                ),
+                DropdownMenuItem<String>(
+                  value: '13:00',
+                  child: Text('13:00'),
+                ),
+                DropdownMenuItem<String>(
+                  value: '15:00',
+                  child: Text('15:00'),
+                ),
+                DropdownMenuItem<String>(
+                  value: '20:00',
+                  child: Text('20:00'),
+                ),
+                // Add more time options here
+              ],
             ),
           ],
         ),
@@ -138,33 +131,6 @@ class _SettingPageState extends State<SettingPage> {
             label: 'My Account',
           ),
         ],
-      ),
-    );
-  }
-}
-
-class NotificationButton extends StatelessWidget {
-  final String title;
-  final bool isActive;
-  final VoidCallback onPressed;
-
-  NotificationButton({
-    required this.title,
-    required this.isActive,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        primary: isActive ? Colors.blue : Colors.grey,
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      ),
-      child: Text(
-        title,
-        style: TextStyle(fontSize: 20, color: Colors.white), // Make the text white
       ),
     );
   }

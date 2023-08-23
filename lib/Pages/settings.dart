@@ -18,62 +18,81 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
+        leading: const Icon(Icons.arrow_back), // Back button
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SettingsButton(
-              title: 'Font Size',
-              onPressed: () {
-                // TODO: Implement font size settings
-              },
-            ),
-            SettingsButton(
-              title: 'Notification',
-              onPressed: () {
-                // TODO: Implement notification settings
-              },
-            ),
-            SettingsButton(
-              title: 'About Us',
-              onPressed: () {
-                // TODO: Implement about us page
-              },
-            ),
-            SettingsButton(
-              title: 'Exit App',
-              onPressed: () {
-                // TODO: Implement exit app logic
-              },
-            ),
-          ],
-        ),
+        child: SettingsPageContent(),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF034D91),
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.white,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'My Account',
+          ),
+        ],
       ),
     );
   }
 }
 
-class SettingsButton extends StatelessWidget {
-  final String title;
-  final VoidCallback onPressed;
-
-  SettingsButton({required this.title, required this.onPressed});
-
+class SettingsPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(35.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 40),
+          buildSettingsButton(context, 'Font Size', borderRadius: 15.0),
+          const SizedBox(height: 70), // Increased spacing
+          buildSettingsButton(context, 'Notifications', borderRadius: 15.0),
+          const SizedBox(height: 70), // Increased spacing
+          buildSettingsButton(context, 'About Us', borderRadius: 15.0),
+          const SizedBox(height: 70), // Increased spacing
+          buildSettingsButton(context, 'Exit App', textColor: Colors.red, borderRadius: 15.0),
+          const Spacer(),
+        ],
+      ),
+    );
+  }
+
+  Widget buildSettingsButton(BuildContext context, String title,
+      {Color? textColor, double borderRadius = 10.0}) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 50),
+      width: double.infinity,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: () {
+          // Handle button press
+        },
         style: ElevatedButton.styleFrom(
-          primary: Colors.blue,
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 70),
-          textStyle: TextStyle(fontSize: 20),
+          primary: Colors.lightBlue, // Background color
+          padding: const EdgeInsets.symmetric(vertical: 30),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
         ),
-        child: Text(title),
+        child: Center(
+          child: Text(
+            title,
+            style: TextStyle(
+              fontSize: 18,
+              color: textColor ?? Colors.black,
+            ),
+          ),
+        ),
       ),
     );
   }

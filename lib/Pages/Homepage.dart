@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/Practicetests.dart';
-import 'package:roadschool/Pages/learnChapters.dart';
-import 'package:roadschool/Pages/progressScreen.dart';
-
-import 'SplashScreen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,20 +8,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFD9D9D9),
-        leading: IconButton(
-          icon: Image.asset(
-            'assets/images/iconwtbg.png',
-            width: 40,
-            height: 40,
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SplashScreenpage()), // Replace with the appropriate page
-            );
-          },
-        ),
+          backgroundColor: Color(0xFFD9D9D9),
+          leading: Image.asset('assets/images/iconwtbg.png', width: 40, height: 40), // Adjust width and height
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFF034D91),
@@ -60,10 +44,6 @@ class HomePage extends StatelessWidget {
                     height: 110,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const learnChapters()), // Navigate to HomePage
-                        );
                       },
                       style: ElevatedButton.styleFrom(
                         side: const BorderSide(color: Colors.black),
@@ -132,10 +112,6 @@ class HomePage extends StatelessWidget {
                     height: 110,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ProgressScreen()), // Navigate to HomePage
-                        );
                         // Handle Course Progress button press
                       },
                       style: ElevatedButton.styleFrom(
