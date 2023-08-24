@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 import 'package:roadschool/Pages/Homepage.dart';
 
-class SplashScreenpage extends StatelessWidget {
+class SplashScreenpage extends StatefulWidget {
   const SplashScreenpage({super.key});
   @override
   Widget build(BuildContext context) {
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    bool _isChecked = false; // State for the checkbox
     return SingleChildScrollView(
       child: SizedBox(
         width: double.infinity,
@@ -31,7 +32,7 @@ class SplashScreenpage extends StatelessWidget {
                 Container(
                   // autobiographerF7f (6ovo54vPY337YWyZEJNAJm)
                   margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
-                  padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 150*fem),
+                  padding: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 50*fem),
                   width: double.infinity,
                   decoration: const BoxDecoration (
                     image: DecorationImage (
@@ -63,7 +64,7 @@ class SplashScreenpage extends StatelessWidget {
                             Container(
                               // autographic2h (6ovoWe27enoughGBDbbipwK)
                               margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
-                              padding: EdgeInsets.fromLTRB(124*fem, 90*fem, 124*fem, 63*fem),
+                              padding: EdgeInsets.fromLTRB(124*fem, 105*fem, 124*fem, 63*fem),
                               width: double.infinity,
                               decoration: const BoxDecoration (
                                 image: DecorationImage (
@@ -76,24 +77,18 @@ class SplashScreenpage extends StatelessWidget {
                               child: Center(
                                 // image2w2R (1:10)
                                 child: SizedBox(
-                                  width: 213*fem,
+                                  width: 300*fem,
                                   height: 194*fem,
-                                  child: TextButton(
-                                    onPressed: () {},
-                                    style: TextButton.styleFrom (
-                                      padding: EdgeInsets.zero,
-                                    ),
                                     child: Image.asset(
-                                      'assets/images/splashicon.png',
+                                      'assets/images/iconwtbg.png',
                                       fit: BoxFit.cover,
-                                    ),
                                   ),
                                 ),
                               ),
                             ),
                             Container(
                               // welcometoroadschoolEXK (1:9)
-                              margin: EdgeInsets.fromLTRB(1*fem, 0*fem, 0*fem, 0*fem),
+                              margin: EdgeInsets.fromLTRB(1*fem, 4*fem, 0*fem, 0*fem),
                               constraints: BoxConstraints (
                                 maxWidth: 256*fem,
                               ),
@@ -114,15 +109,14 @@ class SplashScreenpage extends StatelessWidget {
                       ),
                       Container(
                         margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 8 * fem, 0 * fem),
+                            0 * fem, 20 * fem, 8 * fem, 0 * fem),
                         constraints: BoxConstraints(
                           maxWidth: 328 * fem,
                         ),
                         child: Text(
                           'Learn and test yourself on the ICBC questions that you will encounter on the official ICBC Learner’s Test.',
                           textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Inter',
+                          style: TextStyle(
                             fontSize: 22 * ffem,
                             fontWeight: FontWeight.w700,
                             height: 1.2125 * ffem / fem,
@@ -130,68 +124,96 @@ class SplashScreenpage extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-
-
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                      child: SizedBox(
-                        height: 100,
-                        width: 150,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const HomePage()), // Navigate to HomePage
-                            );
-                          },
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(10*fem, 4*fem, 12.5*fem, 4*fem),
-                            width: double.infinity,
-                            decoration: BoxDecoration (
-                              color: const Color(0xff024c90),
-                              borderRadius: BorderRadius.circular(16*fem),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 30*fem, 0*fem),
-                                  child: Text(
-                                    'Next',
-                                    textAlign: TextAlign.center,
-                                    style: SafeGoogleFont (
-                                      'Inter',
-                                      fontSize: 19*ffem,
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.2631578947*ffem/fem,
-                                      color: const Color(0xfff6f6f6),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-
-                                    padding: const EdgeInsets.all(5),
-
-                                    child: const Icon(Icons.navigate_next, color: Colors.white,)),
-                              ],
-                            ),
+                      CheckboxListTile(
+                        title: Text(
+                          'I agree to the terms and conditions', // Change this to your desired hyperlink text
+                          style: TextStyle(
+                            color: Colors.blueAccent, // Change the color as needed
+                            // decoration: TextDecoration.underline,
                           ),
                         ),
+                        value: _isChecked,
+                        onChanged: (bool? value) {
+                          // Update the checkbox state
+                          setState(() {
+                            _isChecked = value!;
+                          });
+                        },
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
-                    ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                            child: SizedBox(
+                              height: 60,
+                              width: 150,
+                              child: TextButton(
+                                onPressed: _isChecked
+                                    ? () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const HomePage(),
+                                    ),
+                                  );
+                                }
+                                    : null, // Disable button if checkbox is not checked
+                                child: Container(
+                                  padding: EdgeInsets.fromLTRB(
+                                      30 * fem, 2 * fem, 15 * fem, 2 * fem),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xff024c90),
+                                    borderRadius: BorderRadius.circular(16 * fem),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.fromLTRB(
+                                            0 * fem, 0 * fem, 0 * fem, 0 * fem),
+                                        child: Text(
+                                          'Next',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 19 * ffem,
+                                            fontWeight: FontWeight.w600,
+                                            height: 1.2631578947 * ffem / fem,
+                                            color: const Color(0xfff6f6f6),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(5),
+                                        child: const Icon(
+                                          Icons.navigate_next,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                   ],
-                ),
-              ],
-            ),
+              ),
           ),
+        ],
         ),
       ),
+      ),
+      ),
     );
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
   }
 }

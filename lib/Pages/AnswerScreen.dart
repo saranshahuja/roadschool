@@ -25,19 +25,22 @@ class AnswerSheetPage extends StatefulWidget {
 class _AnswerSheetPageState extends State<AnswerSheetPage> {
   int _currentQuestionIndex = 0;
   List<String> _questions = [
-    "Question 1: This sign means?",
-    "Question 2: This sign means?",
-    "Question 3: This sign means?",
+    "Question 1: What does a red traffic light mean ?",
+    "Question 2: What should you do when you see a yield sign ?",
+    "Question 3: What does a yellow traffic light mean ?",
+    "Question 4: What does a yellow traffic light mean ?",
+    "Question 5: What does a yellow traffic light mean ?",
+
+    // ... Add more questions
   ];
   List<String> _answers = [
-    "Answer 1. Two-way left turn lane.",
-    "Answer 2. Playground nearby - drive with caution",
-    "Answer 3. Railway crossing ahead - be prepared to stop",
-  ];
-  List<String> _imagePaths = [
-    'assets/images/playground.png',
-    'assets/images/railway.png',
-    'assets/images/twoway.png',
+    "Answer 1. Stop",
+    "Answer 2. Slow down and yield the right-of-way",
+    "Answer 3. Slow down and prepare to stop",
+    "Answer 4. Slow down and prepare to stop",
+    "Answer 5. Slow down and prepare to stop",
+
+    // ... Add more answers
   ];
   bool _showAnswer = false;
 
@@ -46,25 +49,6 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
       if (_currentQuestionIndex < _questions.length - 1) {
         _currentQuestionIndex++;
         _showAnswer = false;
-      } else {
-        // Display a message indicating completion
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Congratulations!'),
-              content: Text('You have learned chapter 1.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.popUntil(context, ModalRoute.withName('/')); // Pop all routes until home screen
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          },
-        );
       }
     });
   }
@@ -90,7 +74,7 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Learn Chapter 7'),
+        title: Text('Answer Sheet App'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -102,24 +86,14 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
               children: [
                 LinearProgressIndicator(
                   value: progress,
-                  minHeight: 27,
-                  color: Colors.green,
+                  minHeight: 27, // Adjust this height as needed
                 ),
                 Positioned(
                   left: MediaQuery.of(context).size.width * progress,
                   child: Image.asset(
-                    'assets/images/iconwtbg.png',
+                    'assets/images/iconwtbg.png', // Provide your image path
                     height: 40,
                     width: 40,
-                  ),
-                ),
-                Positioned(
-                  top: 7,
-                  right: 0,
-                  child: Image.asset(
-                    'assets/images/flag.png',
-                    height: 20,
-                    width: 20,
                   ),
                 ),
               ],
@@ -133,32 +107,19 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
               ),
             ),
             SizedBox(height: 16),
-            Image.asset(
-              _imagePaths[_currentQuestionIndex % _imagePaths.length],
-              height: 251,
-              width: 250,
-              fit: BoxFit.cover,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: _showAnswer
+                  ? Text(
+                _answers[_currentQuestionIndex],
+                style: TextStyle(fontSize: 16),
+              )
+                  : Container(),
             ),
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: _toggleShowAnswer,
               child: Text(_showAnswer ? 'Hide Answer' : 'Show Answer'),
-            ),
-            SizedBox(height: 16),
-            Visibility(
-              visible: _showAnswer,
-              child: Container(
-                color: Colors.green,
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  _answers[_currentQuestionIndex],
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
             ),
             SizedBox(height: 16),
             Row(

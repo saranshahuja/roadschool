@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/Homepage.dart';
 
-class learnChapters extends StatefulWidget {
-  const learnChapters({super.key});
+class LearnChapters extends StatefulWidget {
+  const LearnChapters({Key? key}) : super(key: key);
 
   @override
-  _learnChaptersState createState() => _learnChaptersState();
+  _LearnChaptersState createState() => _LearnChaptersState();
 }
-class _learnChaptersState extends State<learnChapters> {
+
+class _LearnChaptersState extends State<LearnChapters> {
   List<bool> chapterStatus = List.generate(10, (index) => false);
 
   @override
   Widget build(BuildContext context) {
-    double baseWidth = 310;
+    double baseWidth = 350;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 1.5;
 
@@ -21,32 +22,32 @@ class _learnChaptersState extends State<learnChapters> {
         backgroundColor: Color(0xFF034D91),
         leading: IconButton(
           icon: Image.asset(
-            'assets/images/vector-5Rj.png', // Replace with the actual image path
+            'assets/images/vector-5Rj.png',
             color: Colors.white,
-            height: 24, // Adjust the height as needed
-            width: 24,  // Adjust the width as needed //change
+            height: 24,
+            width: 24,
           ),
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomePage()), // Navigate to HomePage
+              MaterialPageRoute(builder: (context) => HomePage()),
             );
           },
         ),
-        title: const Text(
+        title: Text(
           'Learn Chapters',
           style: TextStyle(
-            color: Colors.white, // Set the text color to white
+            color: Colors.white,
             fontSize: 26,
           ),
         ),
       ),
       body: GridView.builder(
-        itemCount: 10, // Number of items in the grid
+        itemCount: 10,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of columns in the grid
-          crossAxisSpacing: 1 * fem, // Spacing between columns
-          mainAxisSpacing: 0 * fem, // Spacing between rows
+          crossAxisCount: 2,
+          crossAxisSpacing: 1 * fem,
+          mainAxisSpacing: 10 * fem, // Adjusted spacing between rows
         ),
         itemBuilder: (context, index) {
           return buildGridItem(context, fem, ffem, index);
@@ -93,9 +94,9 @@ class _learnChaptersState extends State<learnChapters> {
                       text: 'Chapter ',
                     ),
                     TextSpan(
-                      text: '${index + 1}', // Adjust this based on your data
+                      text: '${index + 1}',
                       style: TextStyle(
-                        fontSize: 16 * ffem,
+                        fontSize: 14 * ffem,
                         fontWeight: FontWeight.w700,
                         height: 1.2125 * ffem / fem,
                         color: Color(0xff000000),
@@ -104,7 +105,7 @@ class _learnChaptersState extends State<learnChapters> {
                   ],
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 5),
               Text(
                 chapterStatus[index] ? 'Complete' : 'Incomplete',
                 style: TextStyle(
