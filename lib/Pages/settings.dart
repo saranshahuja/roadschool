@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:roadschool/Pages/settings2.dart';
+import 'package:roadschool/Pages/settings3.dart'; // Import your Settingstwo page
+
 
 void main() {
   runApp(SettingsApp());
@@ -56,9 +59,13 @@ class SettingsPageContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 40),
-          buildSettingsButton(context, 'Font Size', borderRadius: 15.0),
+          buildSettingsButton(context, 'Font Size', borderRadius: 15.0, onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Settingstwo()));
+          }, ),
           const SizedBox(height: 70), // Increased spacing
-          buildSettingsButton(context, 'Notifications', borderRadius: 15.0),
+          buildSettingsButton(context, 'Notifications', borderRadius: 15.0, onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Settingsthree()));
+          },),
           const SizedBox(height: 70), // Increased spacing
           buildSettingsButton(context, 'About Us', borderRadius: 15.0),
           const SizedBox(height: 70), // Increased spacing
@@ -70,13 +77,11 @@ class SettingsPageContent extends StatelessWidget {
   }
 
   Widget buildSettingsButton(BuildContext context, String title,
-      {Color? textColor, double borderRadius = 10.0}) {
+      {Color? textColor, double borderRadius = 10.0, VoidCallback? onPressed}) {
     return Container(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
-          // Handle button press
-        },
+        onPressed:onPressed,
         style: ElevatedButton.styleFrom(
           primary: Colors.lightBlue, // Background color
           padding: const EdgeInsets.symmetric(vertical: 30),
