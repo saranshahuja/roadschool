@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'chapterReveiwScreen.dart';
 
 class LinearProgressIndicatorApp extends StatefulWidget {
+  final int chapterNumber;
+
+  const LinearProgressIndicatorApp({super.key, required this.chapterNumber});
   @override
   State<StatefulWidget> createState() {
     return LinearProgressIndicatorAppState();

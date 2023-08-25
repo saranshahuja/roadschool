@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roadschool/Pages/testPages.dart';
 import 'dart:ui';
 import '../utils.dart';
 import 'package:roadschool/Pages/Homepage.dart';
@@ -54,8 +55,11 @@ class _PracticeTestsState extends State<PracticeTests> {
   }
 
   Widget buildGridItem(BuildContext context, double fem, double ffem, int index) {
+
     return TextButton(
       onPressed: () {
+        print(index);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>  LinearProgressIndicatorApp(chapterNumber: index,),));
         setState(() {
           if (!chapterStatus[index]) {
             chapterStatus[index] = true;
