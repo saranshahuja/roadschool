@@ -28,7 +28,7 @@ class _LearnChaptersState extends State<LearnChapters> {
             width: 24,
           ),
           onPressed: () {
-            Navigator.push(
+            Navigator.pop(
               context,
               MaterialPageRoute(builder: (context) => HomePage()),
             );

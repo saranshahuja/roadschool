@@ -26,7 +26,7 @@ class _PracticeTestsState extends State<PracticeTests> {
             width: 24,  // Adjust the width as needed
           ),
           onPressed: () {
-            Navigator.push(
+            Navigator.pop(
               context,
               MaterialPageRoute(builder: (context) => HomePage()), // Navigate to HomePage
             );
