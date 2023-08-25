@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 
 
-final answerText = TextStyle(
+final AppBarTitle = TextStyle(
   fontFamily: 'inter',
   fontWeight: FontWeight.bold,
-  color: Colors.red
+  color: Colors.black
 );

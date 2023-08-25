@@ -216,4 +216,6 @@ class SplashScreenpage extends StatefulWidget {
     // TODO: implement createState
     throw UnimplementedError();
   }
+
+  void setState(Null Function() param0) {}
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../widgets/textelementsstyles.dart';
+
 
 
 
@@ -12,7 +14,7 @@ class ChapterReviewPage extends StatelessWidget {
         backgroundColor: Colors.grey[350],
         title: Text(
           'Learn Chapter 1',
-          style: TextStyle(color: Colors.black), // Set text color to black
+          style: AppBarTitle, // Set text color to black
         ),
       ),
       body: Column(
