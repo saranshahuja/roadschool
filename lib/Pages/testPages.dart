@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:roadschool/Pages/chapterReveiwScreen.dart';
 
 class LinearProgressIndicatorApp extends StatefulWidget {
   final String chapterId;
@@ -38,10 +39,12 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
         .collection('chapters')
         .doc(chapterId)
         .collection('questions')
+        .limit(25)
         .get();
     for (var doc in querySnapshot.docs) {
       questions.add(doc.data() as Map<String, dynamic>);
     }
+
     return questions;
   }
   Widget _buildOption(String optionText, int index) {
@@ -49,11 +52,12 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     double opacity = 1.0;
 
     if (_answered) {
-      if (index == _questions[_currentQuestion]['correctOption']) {
+      if (_questions[_currentQuestion]['Correct Option'] == String.fromCharCode(index + 65)) {
         buttonColor = Colors.green;
-      } else if (index == _selectedOptionIndex) {
+      } else if (_selectedOptionIndex == index) {
         buttonColor = Colors.red;
       } else {
+        // Making other options look faded
         opacity = 0.5;
       }
     }
@@ -61,7 +65,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     return Opacity(
       opacity: opacity,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0), // Adjust the spacing here
         child: ElevatedButton(
           onPressed: () {
             setState(() {
@@ -72,7 +76,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
             });
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: buttonColor,
+            primary: buttonColor,
             padding: EdgeInsets.all(12),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
@@ -122,6 +126,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     );
   }
 
+
   Widget build(BuildContext context) {
     if (_questions == null) {
       return CircularProgressIndicator();
@@ -129,10 +134,12 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
       return Scaffold(
         appBar: AppBar(
           title: Text("Traffic Rules Quiz"),
+            automaticallyImplyLeading: false,
           actions: [
             TextButton(
               onPressed: () {
                 setState(() {
+                  Navigator.pop(context);
                   _loading = false;
                   _currentQuestion = 0;
                   _selectedOptionIndex = -1;
@@ -184,11 +191,28 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var i = 0; i <
-                        _questions[_currentQuestion]['options'].length; i++)
-                      _buildOption(
-                        _questions[_currentQuestion]['options'][i],
-                        i,
+                    _buildOption(_questions[_currentQuestion]['Answer A'], 0),
+                    _buildOption(_questions[_currentQuestion]['Answer B'], 1),
+                    _buildOption(_questions[_currentQuestion]['Answer C'], 2),
+                    _buildOption(_questions[_currentQuestion]['Answer D'], 3),
+                    if (_answered)  // Show button only if an option has been selected
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            if (_currentQuestion < _questions.length - 1) {
+                              _currentQuestion++;
+                              _selectedOptionIndex = -1;
+                              _answered = false;
+                            } else {
+                              // Navigate to Congratulations page
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ChapterReviewPage()),
+                              );
+                            }
+                          });
+                        },
+                        child: Text(_currentQuestion < _questions.length - 1 ? 'Next Question' : 'Finish Quiz'),
                       ),
                   ],
                 ),

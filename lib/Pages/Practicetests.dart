@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sizer/sizer.dart';
 import 'testPages.dart';  // Import the testPages.dart file here
 
 class PracticeTests extends StatefulWidget {
@@ -75,40 +76,50 @@ class _PracticeTestsState extends State<PracticeTests> {
                   );
                 },
 
-                child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                  child: Card(
 
-                    child: Container(
-                        width: 141,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xff000000)),
-                          color: const Color(0x5958bf47),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Center(
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  RichText(
-                                    textAlign: TextAlign.center,
-                                    text: TextSpan(
+                      child: Container(
+                          width: 141,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xff000000)),
+                            color: const Color(0x5958bf47),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Center(
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    RichText(
+                                      textAlign: TextAlign.center,
+                                      text: TextSpan(
 
-                                      children: [
-                                        TextSpan(
-                                          text: 'Test ',
-                                        ),
-                                        TextSpan(
-                                          text: '${index +
-                                              1}', // Adjust this based on your data
+                                        children: [
+                                          const TextSpan(
+                                            text: 'Test ',style: TextStyle(
+                                            fontSize: 20 ,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.black,
+                                          ),
+                                          ),
+                                          TextSpan(
+                                            text: chapterName,  style: const TextStyle(
+                                            fontSize: 20 ,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.black,
+                                          ), // Adjust this based on your data
 
-                                        ),
-                                      ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ]
-                            )
-                        )
-                    )
+                                  ]
+                              )
+                          )
+                      )
+                  ),
                 )
             );
           }

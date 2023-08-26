@@ -11,6 +11,7 @@ class ChapterReviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: null,
         backgroundColor: Colors.grey[350],
         title: Text(
           'Learn Chapter 1',
@@ -24,7 +25,7 @@ class ChapterReviewPage extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                Image.asset('assets/images/iconwtbg.png', width: 50.w,), // Added image path
+                Image.asset('assets/images/iconwtbg.png', width: 50,), // Added image path
                 SizedBox(height: 10),
                 Text(
                   'Congratulations!',
