@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 import 'package:roadschool/Pages/Homepage.dart';
 
-class SplashScreenpage extends StatefulWidget {
+class SplashScreenpage extends StatelessWidget {
   const SplashScreenpage({super.key});
   @override
   Widget build(BuildContext context) {
@@ -135,9 +135,6 @@ class SplashScreenpage extends StatefulWidget {
                         value: _isChecked,
                         onChanged: (bool? value) {
                           // Update the checkbox state
-                          setState(() {
-                            _isChecked = value!;
-                          });
                         },
                         controlAffinity: ListTileControlAffinity.leading,
                       ),
