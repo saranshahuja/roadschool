@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'chapterReveiwScreen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LinearProgressIndicatorApp extends StatefulWidget {
-  final int chapterNumber;
+  final String chapterId;
+  final String chapterName;
 
-  const LinearProgressIndicatorApp({super.key, required this.chapterNumber});
+
+  LinearProgressIndicatorApp({required this.chapterId, required this.chapterName});
+
   @override
   State<StatefulWidget> createState() {
     return LinearProgressIndicatorAppState();
@@ -12,13 +15,35 @@ class LinearProgressIndicatorApp extends StatefulWidget {
 }
 
 class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> {
-  bool _loading = true;  // Set to true initially to indicate loading state
-  final List<Map<String, dynamic>> _questions = [];
+  bool _loading = true;
+  List<Map<String, dynamic>> _questions = [];
   int _currentQuestion = 0;
   int _selectedOptionIndex = -1;
   bool _answered = false;
 
+  @override
+  void initState() {
+    super.initState();
+    fetchQuestions(widget.chapterId).then((fetchedQuestions) {
+      setState(() {
+        _questions = fetchedQuestions;
+        _loading = false;
+      });
+    });
+  }
 
+  Future<List<Map<String, dynamic>>> fetchQuestions(String chapterId) async {
+    List<Map<String, dynamic>> questions = [];
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('chapters')
+        .doc(chapterId)
+        .collection('questions')
+        .get();
+    for (var doc in querySnapshot.docs) {
+      questions.add(doc.data() as Map<String, dynamic>);
+    }
+    return questions;
+  }
   Widget _buildOption(String optionText, int index) {
     Color buttonColor = Color(0xFFE0E0E0);
     double opacity = 1.0;
@@ -29,7 +54,6 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
       } else if (index == _selectedOptionIndex) {
         buttonColor = Colors.red;
       } else {
-        // Making other options look faded
         opacity = 0.5;
       }
     }
@@ -37,7 +61,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     return Opacity(
       opacity: opacity,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0), // Adjust the spacing here
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: ElevatedButton(
           onPressed: () {
             setState(() {
@@ -48,7 +72,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
             });
           },
           style: ElevatedButton.styleFrom(
-            primary: buttonColor,
+            backgroundColor: buttonColor,
             padding: EdgeInsets.all(12),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
@@ -98,187 +122,81 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     );
   }
 
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Traffic Rules Quiz"),
-        actions: [
-          TextButton(
-            onPressed: () {
-              setState(() {
-                _loading = false;
-                _currentQuestion = 0;
-                _selectedOptionIndex = -1;
-                _answered = false;
-              });
-            },
-            child: Text(
-              "End Test",
-              style: TextStyle(
-                color: Colors.red,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: Center(
-        child: Container(
-          padding: EdgeInsets.all(12.0),
-          child: _loading
-              ? Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              LinearProgressIndicator(
-                backgroundColor: Colors.grey,
-                valueColor:
-                new AlwaysStoppedAnimation<Color>(Colors.lightGreenAccent),
-                value: (_currentQuestion + 1) / _questions.length,
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Question ${_currentQuestion + 1} of ${_questions.length}',
-                  style: TextStyle(fontSize: 18),
+    if (_questions == null) {
+      return CircularProgressIndicator();
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("Traffic Rules Quiz"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _loading = false;
+                  _currentQuestion = 0;
+                  _selectedOptionIndex = -1;
+                  _answered = false;
+                });
+              },
+              child: Text(
+                "End Test",
+                style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
+            ),
+          ],
+        ),
+        body: Center(
+          child: Container(
+            padding: EdgeInsets.all(12.0),
+            child: _loading
+                ? CircularProgressIndicator()
+                : Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                LinearProgressIndicator(
+                  backgroundColor: Colors.grey,
+                  valueColor: new AlwaysStoppedAnimation<Color>(
+                      Colors.lightGreenAccent),
+                  value: (_currentQuestion + 1) / _questions.length,
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    _questions[_currentQuestion]['question'],
+                    'Question ${_currentQuestion + 1} of ${_questions.length}',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  for (var i = 0;
-                  i < _questions[_currentQuestion]['options'].length;
-                  i++)
-                    _buildOption(
-                      _questions[_currentQuestion]['options'][i],
-                      i,
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      _questions[_currentQuestion]['Question'],
+                      style: TextStyle(fontSize: 18),
                     ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      int correctAnswers = 0;
-                      for (var question in _questions) {
-                        if (question['correctOption'] ==
-                            _selectedOptionIndex) {
-                          correctAnswers++;
-                        }
-                      }
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text("Quiz Score"),
-                            content: Text(
-                              "You got $correctAnswers out of ${_questions.length} questions correct.",
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text("OK"),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    child: Text("Check Score"),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        if (_currentQuestion < _questions.length - 1) {
-                          _currentQuestion++;
-                          _selectedOptionIndex = -1;
-                          _answered = false;
-                        } else {
-                          _loading = false;
-                        }
-                      });
-                    },
-                    child: Text(_currentQuestion < _questions.length - 1
-                        ? 'Next Question'
-                        : 'Retake Quiz'),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChapterReviewPage(),
-                      ),
-                    );
-                  },
-                  child: Text("Finish Quiz"),
                 ),
-              ),
-            ],
-          )
-              : ElevatedButton(
-            onPressed: () {
-              setState(() {
-                _loading = true;
-                _currentQuestion = 0;
-                _selectedOptionIndex = -1;
-                _answered = false;
-              });
-            },
-            child: Text("Start Quiz"),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    for (var i = 0; i <
+                        _questions[_currentQuestion]['options'].length; i++)
+                      _buildOption(
+                        _questions[_currentQuestion]['options'][i],
+                        i,
+                      ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: _loading && _currentQuestion == _questions.length
-          ? Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => QuizResultPage(),
-              ),
-            );
-          },
-          child: Text("Show Result"),
-        ),
-      )
-          : null,
-    );
-  }
-}
-
-
-class QuizResultPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Quiz Results"),
-      ),
-      body: Center(
-        child: Text("Quiz Results will be displayed here."),
-      ),
-    );
+      );
+    }
   }
 }
