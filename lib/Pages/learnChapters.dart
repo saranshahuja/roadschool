@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/Homepage.dart';
 
@@ -9,116 +10,114 @@ class LearnChapters extends StatefulWidget {
 }
 
 class _LearnChaptersState extends State<LearnChapters> {
-  List<bool> chapterStatus = List.generate(10, (index) => false);
+  bool _loading = true;
+  List<Map<String, dynamic>> chapters = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchChapters().then((fetchedChapters) {
+      setState(() {
+        chapters = fetchedChapters;
+        _loading = false;
+      });
+    });
+  }
+
+  Future<List<Map<String, dynamic>>> fetchChapters() async {
+    List<Map<String, dynamic>> fetchedChapters = [];
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('chapters').get();
+    for (var doc in querySnapshot.docs) {
+      fetchedChapters.add({
+        'id': doc.id,
+        // Assuming you want to use the doc.id as the name too, since no fields are there
+        'name': doc.id,
+      });
+    }
+
+    return fetchedChapters;
+  }
 
   @override
   Widget build(BuildContext context) {
-    double baseWidth = 350;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 1.5;
+    if (_loading) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Practice Tests',
+          ),
+        ),
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    } else {
+      return Scaffold(
+        appBar: AppBar(
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF034D91),
-        leading: IconButton(
-          icon: Image.asset(
-            'assets/images/vector-5Rj.png',
-            color: Colors.white,
-            height: 24,
-            width: 24,
-          ),
-          onPressed: () {
-            Navigator.pop(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          },
-        ),
-        title: Text(
-          'Learn Chapters',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 26,
-          ),
-        ),
-      ),
-      body: GridView.builder(
-        itemCount: 10,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 1 * fem,
-          mainAxisSpacing: 10 * fem, // Adjusted spacing between rows
-        ),
-        itemBuilder: (context, index) {
-          return buildGridItem(context, fem, ffem, index);
-        },
-      ),
-    );
-  }
+          leading: BackButton(color: Colors.white,),
+            title: const Text(
+              'Learn Chapters',
+              style: TextStyle(color: Colors.white),
+            ),
 
-  Widget buildGridItem(BuildContext context, double fem, double ffem, int index) {
-    return TextButton(
-      onPressed: () {
-        setState(() {
-          if (!chapterStatus[index]) {
-            chapterStatus[index] = true;
-          }
-        });
-      },
-      style: TextButton.styleFrom(
-        padding: EdgeInsets.zero,
-      ),
-      child: Container(
-        width: 141 * fem,
-        height: 89 * fem,
-        decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xff000000)),
-          color: const Color(0xffa6cdf2),
-          borderRadius: BorderRadius.circular(15 * fem),
+            backgroundColor: const Color(0xFF034D91)
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  style: TextStyle(
-                    fontSize: 17 * ffem,
-                    fontWeight: FontWeight.w400,
-                    height: 1.2125 * ffem / fem,
-                    color: Color(0xff000000),
-                  ),
-                  children: [
-                    const TextSpan(
-                      text: 'Chapter ',
-                    ),
-                    TextSpan(
-                      text: '${index + 1}',
-                      style: TextStyle(
-                        fontSize: 14 * ffem,
-                        fontWeight: FontWeight.w700,
-                        height: 1.2125 * ffem / fem,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                chapterStatus[index] ? 'Complete' : 'Incomplete',
-                style: TextStyle(
-                  fontSize: 12 * ffem,
-                  fontWeight: FontWeight.w600,
-                  height: 1.2125 * ffem / fem,
-                  color: chapterStatus[index] ? Color(0xff58bf47) : Color(0xfffa7470),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+        body: GridView.builder(
+            itemCount: chapters.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, // Number of items per row
+            ),
+            itemBuilder: (BuildContext context, int index) {
+              String chapterId = chapters[index]['id'];
+              String chapterName = chapters[index]['name'];
+
+              return GestureDetector(
+                  onTap: () {
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                    child: Card(
+                        child: Container(
+                            width: 141,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xff000000)),
+                              color: const Color(0xffA6CEF2),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Center(
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                  RichText(
+                                    textAlign: TextAlign.center,
+                                    text: TextSpan(
+                                      children: [
+                                        const TextSpan(
+                                          text: 'Learn ',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: chapterName,
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.black,
+                                          ), // Adjust this based on your data
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ])))),
+                  ));
+            }),
+      );
+    }
   }
 }

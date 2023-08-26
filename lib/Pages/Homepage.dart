@@ -3,6 +3,7 @@ import 'package:roadschool/Pages/Practicetests.dart';
 import 'package:roadschool/Pages/learnChapters.dart';
 import 'package:roadschool/Pages/progressScreen.dart';
 
+import '../widgets/textelementsstyles.dart';
 import 'SplashScreen.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,6 +13,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Road School', style: AppBarTitle,),
         backgroundColor: Color(0xFFD9D9D9),
         leading: IconButton(
           icon: Image.asset(
