@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:roadschool/Pages/settings.dart';
 void main() {
   runApp(Settingstwo());
 }
@@ -8,12 +8,12 @@ class Settingstwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SettingPage(),
+      home: SettingPage2(),
     );
   }
 }
 
-class SettingPage extends StatelessWidget {
+class SettingPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +27,11 @@ class SettingPage extends StatelessWidget {
             width: 24,
           ),
           onPressed: () {
-            Navigator.pop(context); // Go back to the previous page
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => SettingPage()),
+            );
           },
+
         ),
         title: Text('Font Size'),
       ),
