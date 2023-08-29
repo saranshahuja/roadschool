@@ -98,7 +98,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Text(
-                      String.fromCharCode(index + 65),
+                      String.fromCharCode(index + 65) + '.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -134,7 +134,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
       return Scaffold(
         appBar: AppBar(
           title: Text("Traffic Rules Quiz"),
-            automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false,
           actions: [
             TextButton(
               onPressed: () {
