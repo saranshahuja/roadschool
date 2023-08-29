@@ -31,7 +31,6 @@ class _LearnChaptersState extends State<LearnChapters> {
     for (var doc in querySnapshot.docs) {
       fetchedChapters.add({
         'id': doc.id,
-        // Assuming you want to use the doc.id as the name too, since no fields are there
         'name': doc.id,
       });
     }

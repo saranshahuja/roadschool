@@ -21,7 +21,7 @@ class AnswerSheetPage extends StatefulWidget {
 class _AnswerSheetPageState extends State<AnswerSheetPage> {
   int _currentQuestionIndex = 0;
   List<String> _questions = [
-    "Question 1: What does a red traffic light mean ?",
+    " What does a red traffic light mean ?",
     "Question 2: What should you do when you see a yield sign ?",
     "Question 3: What does a yellow traffic light mean ?",
     "Question 4: What does a yellow traffic light mean ?",
