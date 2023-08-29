@@ -43,8 +43,8 @@ class HomePage extends StatelessWidget {
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'My Account',
+            icon: Icon(Icons.settings),
+            label: 'Settings',
           ),
         ],
       ),
@@ -61,64 +61,28 @@ class HomePage extends StatelessWidget {
                     width: 310,
                     height: 110,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const LearnChapters()), // Navigate to HomePage
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        side: const BorderSide(color: Colors.black),
-                        backgroundColor: const Color(0x590071DA), // Set button background color
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 20), // Adjust padding
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),)
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('assets/images/Study11.png', width: 55, height: 55),
-                          SizedBox(width: 12),
-                          const Text(
-                            'Learn chapters',
-                            style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
-                          ),
-                        ],
-                      )
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 310,
-                    height: 110,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
+                        onPressed: () {
+                          Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => PracticeTests()),
-                        );  // Handle Practice test button press
-                      },
-                      style: ElevatedButton.styleFrom(
-                        side: const BorderSide(color: Colors.black),
-                        backgroundColor: Color(0x500071DA), // Set button background color
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 30, vertical: 20), // Adjust padding
+                            MaterialPageRoute(builder: (context) => const LearnChapters()), // Navigate to LearnChapters
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          side: const BorderSide(color: Colors.black),
+                          backgroundColor: const Color(0x590071DA),
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),)
-                      ),
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset('assets/images/image-45.png', width: 55, height: 55),
+                            Image.asset('assets/images/Study11.png', width: 55, height: 55),
                             SizedBox(width: 12),
                             const Text(
-                              'Practice Tests',
-                              style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
+                              'Learn chapters',
+                              style: TextStyle(fontSize: 28, color: Colors.black),
                             ),
                           ],
                         )
@@ -133,21 +97,56 @@ class HomePage extends StatelessWidget {
                     width: 310,
                     height: 110,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ProgressScreen()), // Navigate to HomePage
-                        );
-                        // Handle Course Progress button press
-                      },
-                      style: ElevatedButton.styleFrom(
-                        side: const BorderSide(color: Colors.black),
-                        backgroundColor: const Color(0x500071DA), // Set button background color
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 20), // Adjust padding
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PracticeTests()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          side: const BorderSide(color: Colors.black),
+                          backgroundColor: Color(0x500071DA),
+                          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),)
-                      ),
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/images/image-45.png', width: 55, height: 55),
+                            SizedBox(width: 12),
+                            const Text(
+                              'Practice Tests',
+                              style: TextStyle(fontSize: 28, color: Colors.black),
+                            ),
+                          ],
+                        )
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 310,
+                    height: 110,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ProgressScreen()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          side: const BorderSide(color: Colors.black),
+                          backgroundColor: const Color(0x500071DA),
+                          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -155,7 +154,7 @@ class HomePage extends StatelessWidget {
                             const SizedBox(width: 12),
                             const Text(
                               'Course Progress',
-                              style: TextStyle(fontSize: 28, color: Colors.black), // Set button text color
+                              style: TextStyle(fontSize: 28, color: Colors.black),
                             ),
                           ],
                         )

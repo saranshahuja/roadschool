@@ -113,25 +113,6 @@ class _SettingPageState extends State<SettingPage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF034D91),
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'My Account',
-          ),
-        ],
-      ),
     );
   }
 }
