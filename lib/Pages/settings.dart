@@ -3,11 +3,8 @@ import 'package:roadschool/Pages/settings2.dart';
 import 'package:roadschool/Pages/settings3.dart';
 import 'package:roadschool/Pages/Homepage.dart'; // Import your HomeScreen.dart
 
-void main() {
-  runApp(SettingsApp());
-}
 
-class SettingsApp extends StatelessWidget {
+class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,15 +48,19 @@ class _SettingPageState extends State<SettingPage> {
           onTap: (index) {
             setState(() {
               _currentIndex = index;
-              if (index == 2) {
-                // If the Settings icon is tapped, navigate to the Settings page
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SettingPage()));
-              } else if (index == 0) {
+              switch (index) {
+                case 0:
                 // If the Home icon is tapped, navigate to HomeScreen.dart
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-              } else if (index == 1) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                  break;
+                case 1:
                 // If the Search icon is tapped, navigate to SearchScreen.dart
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                //Navigator.push(context, MaterialPageRoute(builder: (context) => BookNow()));
+                  break;
+                case 2:
+                // If the Settings icon is tapped, navigate to the Settings page
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SettingPage()));
+                  break;
               }
             });
           },
