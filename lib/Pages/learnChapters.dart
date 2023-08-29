@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/Homepage.dart';
+import 'package:roadschool/Pages/AnswerScreen.dart';
 
 class LearnChapters extends StatefulWidget {
   const LearnChapters({Key? key}) : super(key: key);
@@ -74,7 +75,14 @@ class _LearnChaptersState extends State<LearnChapters> {
 
               return GestureDetector(
                   onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AnswerSheetPage(chapterId: chapters[index]['id']),
+                      ),
+                    );
                   },
+
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
                     child: Card(
