@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import '../utils.dart';
 import 'package:roadschool/Pages/Homepage.dart';
 
-class SplashScreenpage extends StatelessWidget {
-  const SplashScreenpage({super.key});
+class SplashScreenpage extends StatefulWidget {
+  @override
+  _SplashScreenpageState createState() => _SplashScreenpageState();
+}
+class _SplashScreenpageState extends State<SplashScreenpage> {
+  bool _isChecked = false; // State for the checkbox
   @override
   Widget build(BuildContext context) {
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    bool _isChecked = false; // State for the checkbox
     return SingleChildScrollView(
       child: SizedBox(
         width: double.infinity,
@@ -134,7 +137,9 @@ class SplashScreenpage extends StatelessWidget {
                         ),
                         value: _isChecked,
                         onChanged: (bool? value) {
-                          // Update the checkbox state
+                          setState(() {
+                            _isChecked = value!;
+                          });
                         },
                         controlAffinity: ListTileControlAffinity.leading,
                       ),
@@ -207,12 +212,4 @@ class SplashScreenpage extends StatelessWidget {
       ),
     );
   }
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }
-
-  void setState(Null Function() param0) {}
 }
