@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/AnswerScreen.dart';
 import 'package:roadschool/Pages/Homepage.dart';
+import 'package:roadschool/Pages/Practicetests.dart';
+import 'package:roadschool/Pages/SplashScreen.dart';
+import 'package:roadschool/Pages/learnChapters.dart';
 import 'package:roadschool/Pages/login.dart';
 
 
@@ -8,6 +11,7 @@ import 'package:roadschool/Pages/login.dart';
 
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:roadschool/Pages/settings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

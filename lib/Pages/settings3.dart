@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roadschool/Pages/settings.dart';
 import 'package:toggle_switch/toggle_switch.dart'; // Import the ToggleSwitch package
 
 void main() {
@@ -37,6 +38,7 @@ class _SettingPageState extends State<SettingPage> {
             color: Colors.white,
           ),
           onPressed: () {
+            // Navigate back to the previous settings page (SettingsApp in this case)
             Navigator.pop(context);
           },
         ),

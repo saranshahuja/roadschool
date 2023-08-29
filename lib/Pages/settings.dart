@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:roadschool/Pages/settings2.dart';
-import 'package:roadschool/Pages/settings3.dart';
-import 'package:roadschool/Pages/Homepage.dart'; // Import your HomeScreen.dart
+import 'package:roadschool/Pages/settings3.dart'; // Import your Settingstwo page
 
 
-class Settings extends StatelessWidget {
+void main() {
+  runApp(SettingsApp());
+}
+
+class SettingsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,72 +17,41 @@ class Settings extends StatelessWidget {
   }
 }
 
-class SettingPage extends StatefulWidget {
-  @override
-  _SettingPageState createState() => _SettingPageState();
-}
-
-class _SettingPageState extends State<SettingPage> {
-  int _currentIndex = 2; // Set the initial index to the Settings page
-
+class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        if (_currentIndex == 2) {
-          // If on the Settings page, navigate back to the previous page
-          Navigator.pop(context);
-          return false; // Prevent exiting the app
-        }
-        return true; // Allow normal back navigation
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Settings'),
-          leading: const Icon(Icons.arrow_back), // Back button
-        ),
-        body: Center(
-          child: SettingsPageContent(),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color(0xFF034D91),
-          unselectedItemColor: Colors.white,
-          selectedItemColor: Colors.white,
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-              switch (index) {
-                case 0:
-                // If the Home icon is tapped, navigate to HomeScreen.dart
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                  break;
-                case 1:
-                // If the Search icon is tapped, navigate to SearchScreen.dart
-                //Navigator.push(context, MaterialPageRoute(builder: (context) => BookNow()));
-                  break;
-                case 2:
-                // If the Settings icon is tapped, navigate to the Settings page
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SettingPage()));
-                  break;
-              }
-            });
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Settings'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            // Navigate back to the previous screen
+            Navigator.pop(context);
           },
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Search',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ],
         ),
+      ),
+      body: Center(
+        child: SettingsPageContent(),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF034D91),
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.white,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'My Account',
+          ),
+        ],
       ),
     );
   }
@@ -103,7 +76,9 @@ class SettingsPageContent extends StatelessWidget {
           const SizedBox(height: 70), // Increased spacing
           buildSettingsButton(context, 'About Us', borderRadius: 15.0),
           const SizedBox(height: 70), // Increased spacing
-          buildSettingsButton(context, 'Exit App', textColor: Colors.red, borderRadius: 15.0),
+          buildSettingsButton(context, 'Exit App', textColor: Colors.red, borderRadius: 15.0, onPressed: () {
+            SystemNavigator.pop();
+          }),
           const Spacer(),
         ],
       ),
