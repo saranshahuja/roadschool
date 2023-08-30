@@ -6,7 +6,7 @@ class loginpage extends StatefulWidget {
   @override
   _loginpageState createState() => _loginpageState();
 }
-
+// updated ui
 class _loginpageState extends State<loginpage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _phoneNumberController = TextEditingController();
