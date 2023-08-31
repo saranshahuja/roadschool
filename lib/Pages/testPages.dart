@@ -39,7 +39,6 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
         .collection('chapters')
         .doc(chapterId)
         .collection('questions')
-        .limit(25)
         .get();
     for (var doc in querySnapshot.docs) {
       questions.add(doc.data() as Map<String, dynamic>);
@@ -48,7 +47,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     return questions;
   }
   Widget _buildOption(String optionText, int index) {
-    Color buttonColor = Color(0xFFE0E0E0);
+    Color buttonColor = Colors.white;
     double opacity = 1.0;
 
     if (_answered) {
@@ -58,7 +57,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
         buttonColor = Colors.red;
       } else {
         // Making other options look faded
-        opacity = 0.5;
+        opacity = 0.2;
       }
     }
 
@@ -76,7 +75,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
             });
           },
           style: ElevatedButton.styleFrom(
-            primary: buttonColor,
+            backgroundColor: buttonColor,
             padding: EdgeInsets.all(12),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
@@ -95,7 +94,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
                       String.fromCharCode(index + 65) + '.',

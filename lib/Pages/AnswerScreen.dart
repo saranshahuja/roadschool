@@ -61,76 +61,108 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
   @override
   Widget build(BuildContext context) {
     double progress = (_currentQuestionIndex + 1) / (_questions.length + 1);
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Answer Sheet App'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(height: 16),
-            Stack(
-              alignment: Alignment.centerLeft,
-              children: [
-                LinearProgressIndicator(
-                  value: progress,
-                  minHeight: 27,
+      body: Container(
+        height: screenHeight,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(height: 16),
+              Stack(
+                alignment: Alignment.centerLeft,
+                children: [
+                  LinearProgressIndicator(
+                    backgroundColor: Colors.transparent,
+                    color: Colors.green,
+                    value: progress,
+                    minHeight: 27,
+                  ),
+                  Positioned(
+                    left: MediaQuery.of(context).size.width * progress,
+                    child: Image.asset(
+                      'assets/images/iconwtbg.png',
+                      height: 40,
+                      width: 40,
+                    ),
+                  ),
+                  Container(
+                    height: 29,
+                    decoration: const BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                      color: Colors.black,
+                      width: 1,
+                    ))),
+                  )
+                ],
+              ),
+              SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  _questions.isNotEmpty
+                      ? _questions[_currentQuestionIndex]['question']
+                      : 'Loading...',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Positioned(
-                  left: MediaQuery.of(context).size.width * progress,
-                  child: Image.asset(
-                    'assets/images/iconwtbg.png',
-                    height: 40,
-                    width: 40,
+              ),
+              SizedBox(height: 16),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: _toggleShowAnswer,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: _showAnswer ? Colors.green : Colors.transparent,
+                      border: Border.all(
+                          color: _showAnswer ? Colors.black : Colors.green,
+                          width: 2),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    width: double.infinity,
+                    height: 100,
+                    child: Center(
+                      child: Text(
+                        _showAnswer
+                            ? (_answers.isNotEmpty
+                                ? _answers[_currentQuestionIndex]
+                                    ['correctAnswer']
+                                : 'Loading...')
+                            : "Show Answer",
+                        style: TextStyle(
+                            color: _showAnswer ? Colors.black : Colors.green,
+                            fontSize: _showAnswer ? 16 : 32),
+                      ),
+                    ),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                _questions.isNotEmpty
-                    ? _questions[_currentQuestionIndex]['question']
-                    : 'Loading...',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            ),
-            SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: _showAnswer
-                  ? Text(
-                _answers.isNotEmpty
-                    ? _answers[_currentQuestionIndex]['correctAnswer']
-                    : 'Loading...',
-                style: TextStyle(fontSize: 16),
-              )
-                  : Container(),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _toggleShowAnswer,
-              child: Text(_showAnswer ? 'Hide Answer' : 'Show Answer'),
-            ),
-            SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: _showPreviousQuestion,
-                  child: Text('Previous'),
-                ),
-                SizedBox(width: 16),
-                ElevatedButton(
-                  onPressed: _showNextQuestion,
-                  child: Text('Next'),
-                ),
-              ],
-            ),
-          ],
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TextButton(
+                    onPressed: _showPreviousQuestion,
+                    child: const Text(
+                      'Previous',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: _showNextQuestion,
+                    child: const Text('Next',
+                        style: TextStyle(color: Colors.black)),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
