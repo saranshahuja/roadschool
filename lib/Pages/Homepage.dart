@@ -18,7 +18,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Road School', style: AppBarTitle,),
+        title: Text('Road School', style: TextStyle(
+          fontFamily: 'inter',
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),),
         backgroundColor: Color(0xFFD9D9D9),
         leading: IconButton(
           icon: Image.asset(

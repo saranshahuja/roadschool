@@ -1,35 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:roadschool/Pages/Homepage.dart';
 import 'package:roadschool/Pages/settings2.dart';
 import 'package:roadschool/Pages/settings3.dart'; // Import your Settingstwo page
 
-
-void main() {
-  runApp(SettingsApp());
-}
-
-class SettingsApp extends StatelessWidget {
+class SettingPage extends StatefulWidget { // Changed to StatefulWidget
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SettingPage(),
-    );
-  }
+  _SettingPageState createState() => _SettingPageState();
 }
 
-class SettingPage extends StatelessWidget {
+class _SettingPageState extends State<SettingPage> {
+  int _selectedIndex = 0; // Added to keep track of selected index
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Settings'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            // Navigate back to the previous screen
-            Navigator.pop(context);
-          },
-        ),
       ),
       body: Center(
         child: SettingsPageContent(),
@@ -52,6 +40,21 @@ class SettingPage extends StatelessWidget {
             label: 'My Account',
           ),
         ],
+        currentIndex: _selectedIndex, // Added to indicate selected index
+        onTap: (int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+          if (index == 0) {
+            // Navigate to Home Page
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+            ); // Assuming '/home' is the route name for your Home Page
+          }
+        },
       ),
     );
   }
@@ -71,7 +74,7 @@ class SettingsPageContent extends StatelessWidget {
           }, ),
           const SizedBox(height: 70), // Increased spacing
           buildSettingsButton(context, 'Notifications', borderRadius: 15.0, onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Settingsthree()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Setting3Page()));
           },),
           const SizedBox(height: 70), // Increased spacing
           buildSettingsButton(context, 'About Us', borderRadius: 15.0),

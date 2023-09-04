@@ -44,6 +44,20 @@ class _LearnChaptersState extends State<LearnChapters> {
     if (_loading) {
       return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Image.asset(
+              'assets/images/vector-5Rj.png',
+              color: Colors.white,
+              height: 24,
+              width: 24,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop(
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            },
+
+          ),
           title: Text(
             'Practice Tests',
           ),

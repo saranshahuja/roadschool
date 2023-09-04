@@ -2,29 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:roadschool/Pages/settings.dart';
 import 'package:toggle_switch/toggle_switch.dart'; // Import the ToggleSwitch package
 
-void main() {
-  runApp(Settingsthree());
-}
 
-class Settingsthree extends StatelessWidget {
+class Setting3Page extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Notifications',
-      theme: ThemeData(
-        primaryColor: Color(0xFF0071DA),
-      ),
-      home: SettingPage(),
-    );
-  }
+  _Setting3PageState createState() => _Setting3PageState();
 }
 
-class SettingPage extends StatefulWidget {
-  @override
-  _SettingPageState createState() => _SettingPageState();
-}
-
-class _SettingPageState extends State<SettingPage> {
+class _Setting3PageState extends State<Setting3Page> {
   int notificationStatus = 0; // 0: Off, 1: On
 
   @override
@@ -33,16 +17,20 @@ class _SettingPageState extends State<SettingPage> {
       appBar: AppBar(
         backgroundColor: Color(0xFF034D91),
         leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
+          icon: Image.asset(
+            'assets/images/vector-5Rj.png',
             color: Colors.white,
+            height: 24,
+            width: 24,
           ),
           onPressed: () {
-            // Navigate back to the previous settings page (SettingsApp in this case)
-            Navigator.pop(context);
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => SettingPage()),
+            );
           },
+
         ),
-        title: Text('Notifications'),
+        title: Text('Notifications', style: TextStyle(color: Colors.white),),
       ),
       body: Center(
         child: Column(
@@ -57,8 +45,8 @@ class _SettingPageState extends State<SettingPage> {
               minWidth: 100.0,
               initialLabelIndex: notificationStatus,
               cornerRadius: 20,
-              // activeBgColor: Colors.blue,
               activeFgColor: Colors.white,
+              // activeBgColor: Colors.blue,
               inactiveBgColor: Colors.grey,
               inactiveFgColor: Colors.white,
               labels: ['Off', 'On'],

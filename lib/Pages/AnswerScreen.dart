@@ -65,7 +65,7 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Answer Sheet App'),
+        title: Text('Learn '),
       ),
       body: Container(
         height: screenHeight,
@@ -128,16 +128,19 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
                     width: double.infinity,
                     height: 100,
                     child: Center(
-                      child: Text(
-                        _showAnswer
-                            ? (_answers.isNotEmpty
-                                ? _answers[_currentQuestionIndex]
-                                    ['correctAnswer']
-                                : 'Loading...')
-                            : "Show Answer",
-                        style: TextStyle(
-                            color: _showAnswer ? Colors.black : Colors.green,
-                            fontSize: _showAnswer ? 16 : 32),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          _showAnswer
+                              ? (_answers.isNotEmpty
+                                  ? _answers[_currentQuestionIndex]
+                                      ['correctAnswer']
+                                  : 'Loading...')
+                              : "Show Answer",
+                          style: TextStyle(
+                              color: _showAnswer ? Colors.black : Colors.green,
+                              fontSize: _showAnswer ? 16 : 32),
+                        ),
                       ),
                     ),
                   ),

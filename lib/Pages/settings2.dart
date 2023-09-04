@@ -33,17 +33,13 @@ class SettingPage2 extends StatelessWidget {
           },
 
         ),
-        title: Text('Font Size'),
+        title: Text('Font Size', style: TextStyle(color: Colors.white),),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Padding(
             padding: EdgeInsets.all(30.0),
-            child: Text(
-              '*Changes will not affect image size.',
-              style: TextStyle(fontSize: 20, color: Colors.black),
-            ),
           ),
           SizedBox(height: 40),
           Center(
@@ -96,6 +92,7 @@ class SettingsButton extends StatelessWidget {
   final BorderRadius? borderRadius;
   final double width; // Add this property
 
+
   SettingsButton({
     required this.title,
     required this.fontSize,
@@ -124,7 +121,7 @@ class SettingsButton extends StatelessWidget {
           child: Center(
             child: Text(
               title,
-              style: TextStyle(fontSize: textFontSize),
+              style: TextStyle(fontSize: textFontSize, color: Colors.white),
             ),
           ),
         ),

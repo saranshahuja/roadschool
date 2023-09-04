@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:roadschool/Pages/Homepage.dart';
 
 import '../widgets/textelementsstyles.dart';
 
@@ -13,9 +14,25 @@ class ProgressScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Image.asset(
+            'assets/images/vector-5Rj.png',
+            color: Colors.white,
+            height: 24,
+            width: 24,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop(
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+
+        ),
         title: Text(
           'Progress',
-          style: AppBarTitle,
+          style: TextStyle(
+            color: Colors.white
+          ),
         ),
         backgroundColor: const Color(0xFF034D91),
       ),
