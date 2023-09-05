@@ -13,6 +13,9 @@ import 'package:roadschool/Pages/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:roadschool/Pages/settings.dart';
 
+
+String? globalUserId;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:SplashScreenpage(),
+      home:loginpage(),
     );
   }
 }

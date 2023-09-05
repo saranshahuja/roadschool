@@ -1,116 +1,59 @@
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:roadschool/Pages/Homepage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../widgets/textelementsstyles.dart';
-
-void main() {
-  runApp(ProgressScreen());
+class UserProgressBarPage extends StatefulWidget {
+  @override
+  _UserProgressBarPageState createState() => _UserProgressBarPageState();
 }
 
-class ProgressScreen extends StatelessWidget {
+class _UserProgressBarPageState extends State<UserProgressBarPage> {
+  List<String> completedChapters = [];
+  List<String> completedTests = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Fetch the user's progress from Firestore
+    fetchUserProgress();
+  }
+
+  Future<void> fetchUserProgress() async {
+    // Replace 'userId' with the actual user ID from Firebase Auth
+    final userId = 'your_user_id_here';
+    DocumentSnapshot snapshot = await FirebaseFirestore.instance.collection('UserProgress').doc(userId).get();
+
+    setState(() {
+      completedChapters = List<String>.from(snapshot.get('completedChapters') ?? []);
+      completedTests = List<String>.from(snapshot.get('completedTests') ?? []);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Image.asset(
-            'assets/images/vector-5Rj.png',
-            color: Colors.white,
-            height: 24,
-            width: 24,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop(
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          },
-
-        ),
-        title: Text(
-          'Progress',
-          style: TextStyle(
-            color: Colors.white
-          ),
-        ),
-        backgroundColor: const Color(0xFF034D91),
+        title: Text('User Progress Bar'),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: const Color(0xffffffff),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: const Column(
-            children: [
-
-
-            ],
-          ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('Completed Chapters: ${completedChapters.length}'),
+            SizedBox(height: 20),
+            LinearProgressIndicator(
+              value: completedChapters.length / 10, // Assuming there are 10 chapters in total
+            ),
+            SizedBox(height: 40),
+            Text('Completed Tests: ${completedTests.length}'),
+            SizedBox(height: 20),
+            LinearProgressIndicator(
+              value: completedTests.length / 5, // Assuming there are 5 tests in total
+            ),
+          ],
         ),
       ),
     );
   }
-}
-
-
-const defaultSpacing = 16.0;
-
-class BarChart extends StatelessWidget {
-  const BarChart({
-    Key? key,
-    this.colors,
-    this.values = const [200, 100, 400, 30],
-  }) : super(key: key);
-
-  final List<Color>? colors;
-  final List<double> values;
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final barWidth =
-            (constraints.maxWidth - defaultSpacing * values.length) /
-                values.length;
-        return CustomPaint(
-          size: Size(constraints.maxWidth, 200),
-          painter: BarChartPainter(
-            values: values,
-            colors: colors ??
-                List<int>.generate(values.length, (i) => i + 1).map(
-                      (e) {
-                    final opacity = e / values.length;
-                    return Theme.of(context)
-                        .colorScheme
-                        .primary
-                        .withOpacity(opacity);
-                  },
-                ).toList(),
-            barWidth: barWidth,
-          ),
-        );
-      },
-    );
-  }
-}
-
-class BarChartPainter extends CustomPainter {
-  BarChartPainter({
-    required this.values,
-    required this.colors,
-    this.barWidth = 24.0,
-  });
-
-  final List<double> values;
-  final List<Color> colors;
-  final double barWidth;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Your existing paint code here...
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

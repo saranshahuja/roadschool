@@ -28,7 +28,7 @@ class _LearnChaptersState extends State<LearnChapters> {
   Future<List<Map<String, dynamic>>> fetchChapters() async {
     List<Map<String, dynamic>> fetchedChapters = [];
     QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('chapters').get();
+    await FirebaseFirestore.instance.collection('chapters').get();
     for (var doc in querySnapshot.docs) {
       fetchedChapters.add({
         'id': doc.id,
@@ -70,7 +70,7 @@ class _LearnChaptersState extends State<LearnChapters> {
       return Scaffold(
         appBar: AppBar(
 
-          leading: BackButton(color: Colors.white,),
+            leading: BackButton(color: Colors.white,),
             title: const Text(
               'Learn Chapters',
               style: TextStyle(color: Colors.white),
@@ -89,6 +89,9 @@ class _LearnChaptersState extends State<LearnChapters> {
 
               return GestureDetector(
                   onTap: () {
+                    // TODO: Add Firestore logging code here to update user's completed chapters
+                    // For example:
+                    // await FirebaseFirestore.instance.collection('UserProgress').doc(userId).update({'completedChapters': FieldValue.arrayUnion([currentChapterId])});
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -112,30 +115,30 @@ class _LearnChaptersState extends State<LearnChapters> {
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                  RichText(
-                                    textAlign: TextAlign.center,
-                                    text: TextSpan(
-                                      children: [
-                                        const TextSpan(
-                                          text: 'Learn ',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.black,
-                                          ),
+                                      RichText(
+                                        textAlign: TextAlign.center,
+                                        text: TextSpan(
+                                          children: [
+                                            const TextSpan(
+                                              text: 'Learn ',
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w400,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: chapterName,
+                                              style: const TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w400,
+                                                color: Colors.black,
+                                              ), // Adjust this based on your data
+                                            ),
+                                          ],
                                         ),
-                                        TextSpan(
-                                          text: chapterName,
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.black,
-                                          ), // Adjust this based on your data
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ])))),
+                                      ),
+                                    ])))),
                   ));
             }),
       );

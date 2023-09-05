@@ -54,75 +54,78 @@ class _PracticeTestsState extends State<PracticeTests> {
       return Scaffold(
         appBar: AppBar(title: const Text('Practice Tests',),backgroundColor: const Color(0xFFC5E9BF)),
         body: GridView.builder(
-          itemCount: chapters.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,  // Number of items per row
-          ),
-          itemBuilder: (BuildContext context, int index) {
-            String chapterId = chapters[index]['id'];
-            String chapterName = chapters[index]['name'];
+            itemCount: chapters.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,  // Number of items per row
+            ),
+            itemBuilder: (BuildContext context, int index) {
+              String chapterId = chapters[index]['id'];
+              String chapterName = chapters[index]['name'];
 
-            return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          LinearProgressIndicatorApp(
-                            chapterId: chapterId,
-                            chapterName: chapterName,
-                          ),
-                    ),
-                  );
-                },
+              return GestureDetector(
+                  onTap: () {
+                    // TODO: Add Firestore logging code here to update user's completed tests
+                    // For example:
+                    //await FirebaseFirestore.instance.collection('UserProgress').doc(userId).update({'completedTests': FieldValue.arrayUnion([currentTestId])});
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            LinearProgressIndicatorApp(
+                              chapterId: chapterId,
+                              chapterName: chapterName,
+                            ),
+                      ),
+                    );
+                  },
 
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-                  child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                    child: Card(
 
-                      child: Container(
-                          width: 141,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xff000000)),
-                            color: const Color(0x5958bf47),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Center(
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    RichText(
-                                      textAlign: TextAlign.center,
-                                      text: TextSpan(
+                        child: Container(
+                            width: 141,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xff000000)),
+                              color: const Color(0x5958bf47),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Center(
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      RichText(
+                                        textAlign: TextAlign.center,
+                                        text: TextSpan(
 
-                                        children: [
-                                          const TextSpan(
-                                            text: 'Test ',style: TextStyle(
-                                            fontSize: 20 ,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.black,
-                                          ),
-                                          ),
-                                          TextSpan(
-                                            text: chapterName,  style: const TextStyle(
-                                            fontSize: 20 ,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.black,
-                                          ), // Adjust this based on your data
+                                          children: [
+                                            const TextSpan(
+                                              text: 'Test ',style: TextStyle(
+                                              fontSize: 20 ,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black,
+                                            ),
+                                            ),
+                                            TextSpan(
+                                              text: chapterName,  style: const TextStyle(
+                                              fontSize: 20 ,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black,
+                                            ), // Adjust this based on your data
 
-                                          ),
-                                        ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ]
-                              )
-                          )
-                      )
-                  ),
-                )
-            );
-          }
+                                    ]
+                                )
+                            )
+                        )
+                    ),
+                  )
+              );
+            }
         ),
       );
     }

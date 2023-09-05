@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ProgressScreen()),
+                          MaterialPageRoute(builder: (context) => UserProgressBarPage()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
