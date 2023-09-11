@@ -5,6 +5,7 @@ import 'package:roadschool/Pages/Practicetests.dart';
 import 'package:roadschool/Pages/SplashScreen.dart';
 import 'package:roadschool/Pages/learnChapters.dart';
 import 'package:roadschool/Pages/login.dart';
+import 'package:roadschool/Pages/chapterReveiwScreen.dart';
 
 
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:loginpage(),
+      home:SplashScreenpage(),
     );
   }
 }

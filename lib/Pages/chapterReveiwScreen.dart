@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../widgets/textelementsstyles.dart';
-
-
-
+import 'Homepage.dart';
 
 class ChapterReviewPage extends StatelessWidget {
   @override
@@ -25,7 +23,7 @@ class ChapterReviewPage extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                Image.asset('assets/images/iconwtbg.png', width: 50,), // Added image path
+                Image.asset('assets/images/iconwtbg.png', width: 190,), // Added image path
                 SizedBox(height: 10),
                 Text(
                   'Congratulations!',
@@ -51,34 +49,23 @@ class ChapterReviewPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OutlinedButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.arrow_back, color: Colors.black), // Set arrow color to black
-                label: Text(
-                  'Learn More',
-                  style: TextStyle(color: Colors.black), // Set text color to black
-                ),
-                style: ButtonStyle(
-                  side: MaterialStateProperty.all(BorderSide(color: Colors.white)), // Set outline color
-                ),
-              ),
-              SizedBox(width: 20),
               OutlinedButton(
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    Text(
-                      'Test Your Knowledge',
-                      style: TextStyle(color: Colors.black), // Set text color to black
-                    ),
-                    SizedBox(width: 10), // Add space here
-                    Icon(Icons.arrow_forward, color: Colors.black), // Set arrow color to black
-                  ],
+                onPressed: () {
+                  // Navigate back to the HomePage
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                        (Route<dynamic> route) => false, // This line clears the navigation stack
+                  );
+                },
+                child: Text(
+                  'Finish',
+                  style: TextStyle(color: Colors.black),
                 ),
                 style: ButtonStyle(
-                  side: MaterialStateProperty.all(BorderSide(color: Colors.white)), // Set outline color
+                  side: MaterialStateProperty.all(BorderSide(color: Colors.white)),
                 ),
               ),
+
             ],
           ),
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils.dart';
-import 'package:roadschool/Pages/Homepage.dart';
+import 'package:roadschool/Pages/login.dart';
 
 class SplashScreenpage extends StatefulWidget {
   @override
@@ -157,7 +157,7 @@ class _SplashScreenpageState extends State<SplashScreenpage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HomePage(),
+                                      builder: (context) => loginpage(),
                                     ),
                                   );
                                 }
