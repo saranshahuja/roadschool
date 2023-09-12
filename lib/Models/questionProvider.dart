@@ -12,7 +12,6 @@ Future<List<Map<String, dynamic>>> fetchQuestions(String chapterId) async {
   for (var doc in querySnapshot.docs) {
     questions.add(doc.data() as Map<String, dynamic>);
   }
-
   return questions;
 }
 
