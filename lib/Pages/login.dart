@@ -1,7 +1,7 @@
+// String globalUserId;  // Global variable to store the user ID
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../utils.dart'; // Importing utilities as used in your SplashScreen
-import 'package:roadschool/Pages/Homepage.dart';
 
 
 
@@ -14,7 +14,7 @@ class loginpage extends StatefulWidget {
 // updated ui
 class _loginpageState extends State<loginpage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  //globalUserId = userCredential.user?.uid;  // Save the user ID to the global variable
+  // globalUserId = userCredential.user?.uid;  // Save the user ID to the global variable
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _otpController = TextEditingController();
   String? _verificationId;
@@ -34,9 +34,8 @@ class _loginpageState extends State<loginpage> {
             children: [
               Container(
                 // autographicWJV (6ovoLydYjgYVsNWSUvXhK)
-                padding: EdgeInsets.fromLTRB(0 * fem, 11 * fem, 0 * fem, 73 * fem),
                 width: double.infinity,
-
+                height: 551 * fem,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
@@ -75,18 +74,17 @@ class _loginpageState extends State<loginpage> {
                         ),
                       ),
                     ),
-
+                    SizedBox(height: 16),
                     Text(
                       'Login',
                       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
-
+                    SizedBox(height: 16),
                     TextField(
                       controller: _phoneNumberController,
                       decoration: InputDecoration(labelText: 'Phone Number'),
                     ),
                     ElevatedButton(
-                      
                       onPressed: () async {
                         await _auth.verifyPhoneNumber(
                           phoneNumber: _phoneNumberController.text,
@@ -113,21 +111,16 @@ class _loginpageState extends State<loginpage> {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        PhoneAuthCredential credential = PhoneAuthProvider.credential(
+                        PhoneAuthCredential credential =
+                        PhoneAuthProvider.credential(
                           verificationId: _verificationId!,
                           smsCode: _otpController.text,
                         );
                         await _auth.signInWithCredential(credential);
-
-                        // Navigate to the HomePage and replace the current route
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()), // Replace with your HomePage widget
-                        );
+                        Navigator.pushReplacementNamed(context, '/home');
                       },
                       child: Text('Verify'),
                     ),
-
                   ],
                 ),
               )

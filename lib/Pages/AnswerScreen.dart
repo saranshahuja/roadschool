@@ -77,12 +77,13 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
           children: [
             SizedBox(height: 16),
             Stack(
-              alignment: Alignment.centerLeft,
               children: [
+                // Existing Linear Progress Indicator with green progress color
                 LinearProgressIndicator(
                   value: progress,
                   minHeight: 27,
                 ),
+                // Existing Positioned widget for current position
                 Positioned(
                   left: MediaQuery.of(context).size.width * progress,
                   child: Image.asset(
@@ -91,10 +92,18 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
                     width: 40,
                   ),
                 ),
+                // New Positioned widget for flag at the end
+                Positioned(
+                  right: 0,
+                  child: Image.asset(
+                    'assets/images/flag_icon.png', // Replace this with your flag image path
+                    height: 40,
+                    width: 40,
+                  ),
+                ),
               ],
             ),
 
-            SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: _images[_currentQuestionIndex]['image']!=""?Image.network(_images[_currentQuestionIndex]['image']):Padding(padding: EdgeInsets.zero),
@@ -109,35 +118,54 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
+
+
             SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: _showAnswer
-                  ? Text(
-                _answers.isNotEmpty
-                    ? _answers[_currentQuestionIndex]['correctAnswer']
-                    : 'Loading...',
-                style: TextStyle(fontSize: 16),
-              )
-                  : Container(),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _toggleShowAnswer,
-              child: Text(_showAnswer ? 'Hide Answer' : 'Show Answer'),
+              padding: EdgeInsets.all(10),
+              child: GestureDetector(
+                onTap: _toggleShowAnswer,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: _showAnswer ? Colors.green : Colors.transparent,
+                    border: Border.all(
+                        color: _showAnswer ? Colors.black : Colors.green,
+                        width: 2),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  width: double.infinity,
+                  height: 100,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        _showAnswer
+                            ? (_answers.isNotEmpty
+                            ? _answers[_currentQuestionIndex]
+                        ['correctAnswer']
+                            : 'Loading...')
+                            : "Show Answer",
+                        style: TextStyle(
+                            color: _showAnswer ? Colors.black : Colors.green,
+                            fontSize: _showAnswer ? 16 : 32),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
             SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
+                TextButton(
                   onPressed: _showPreviousQuestion,
-                  child: Text('Previous'),
+                  child:const Text('Previous', style: TextStyle(color: Colors.black,),),
                 ),
                 SizedBox(width: 16),
-                ElevatedButton(
+                TextButton(
                   onPressed: _showNextQuestion,
-                  child: Text('Next'),
+                  child: const Text('Next', style: TextStyle(color: Colors.black,),),
                 ),
               ],
             ),

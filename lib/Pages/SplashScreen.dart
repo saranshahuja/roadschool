@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roadschool/Pages/Homepage.dart';
 import '../utils.dart';
 import 'package:roadschool/Pages/login.dart';
 
@@ -157,7 +158,7 @@ class _SplashScreenpageState extends State<SplashScreenpage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => loginpage(),
+                                      builder: (context) => HomePage(),
                                     ),
                                   );
                                 }

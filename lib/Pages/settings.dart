@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:roadschool/Pages/Homepage.dart';
 import 'package:roadschool/Pages/settings2.dart';
-import 'package:roadschool/Pages/settings3.dart'; // Import your Settingstwo page
+import 'package:roadschool/Pages/settings3.dart';
+
+
+
 
 class SettingPage extends StatefulWidget { // Changed to StatefulWidget
   @override
