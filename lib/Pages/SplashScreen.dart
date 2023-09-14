@@ -155,7 +155,7 @@ class _SplashScreenpageState extends State<SplashScreenpage> {
                               child: TextButton(
                                 onPressed: _isChecked
                                     ? () {
-                                  Navigator.push(
+                                  Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => HomePage(),

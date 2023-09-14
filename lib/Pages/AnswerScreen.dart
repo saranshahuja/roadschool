@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -69,7 +67,7 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
     print(widget.chapterId);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Answer Sheet App'),
+        title: Text("Learn"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -81,6 +79,8 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
                 // Existing Linear Progress Indicator with green progress color
                 LinearProgressIndicator(
                   value: progress,
+                  color: Colors.green,
+                  backgroundColor: Colors.transparent,
                   minHeight: 27,
                 ),
                 // Existing Positioned widget for current position
@@ -88,25 +88,35 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
                   left: MediaQuery.of(context).size.width * progress,
                   child: Image.asset(
                     'assets/images/iconwtbg.png',
-                    height: 40,
+                    height: 32,
                     width: 40,
                   ),
                 ),
+
                 // New Positioned widget for flag at the end
                 Positioned(
                   right: 0,
                   child: Image.asset(
-                    'assets/images/flag_icon.png', // Replace this with your flag image path
-                    height: 40,
+                    'assets/images/flag.png', // Replace this with your flag image path
+                    height: 27,
                     width: 40,
                   ),
                 ),
+                Container(
+                  height: 29,
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(
+                            color: Colors.black,
+                            width: 1,
+                          ))),
+                )
               ],
             ),
 
             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: _images[_currentQuestionIndex]['image']!=""?Image.network(_images[_currentQuestionIndex]['image']):Padding(padding: EdgeInsets.zero),
+              padding: const EdgeInsets.all(10.0),
+              child: _images[_currentQuestionIndex]['image']!=""?Image.network(_images[_currentQuestionIndex]['image']):Padding(padding: EdgeInsets.all(5)),
             ),
             SizedBox(height: 16),
             Padding(
