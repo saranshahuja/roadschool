@@ -148,8 +148,7 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
     if (_questions == null) {
       return CircularProgressIndicator();
     } else {
-      return SafeArea(
-        child: Scaffold(
+      return Scaffold(
           appBar: AppBar(
             title: Text("Traffic Rules Quiz"),
             automaticallyImplyLeading: false,
@@ -283,8 +282,8 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                   ),
             ),
           ),
-        ),
-      );
+        );
+
     }
   }
 }
