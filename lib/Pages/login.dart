@@ -1,8 +1,8 @@
 // String globalUserId;  // Global variable to store the user ID
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../utils.dart'; // Importing utilities as used in your SplashScreen
-
+import '../utils.dart'; //
+import 'package:roadschool/Pages/Homepage.dart';
 
 
 
@@ -27,15 +27,15 @@ class _loginpageState extends State<loginpage> {
 
     return Scaffold(
       // Reusing the background and layout from SplashScreen
-        body: Padding(
-          padding: EdgeInsets.all(0),
+        body: SingleChildScrollView(
+
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 // autographicWJV (6ovoLydYjgYVsNWSUvXhK)
                 width: double.infinity,
-                height: 551 * fem,
+
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
@@ -52,7 +52,7 @@ class _loginpageState extends State<loginpage> {
                       margin:
                       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 9 * fem),
                       padding: EdgeInsets.fromLTRB(
-                          124 * fem, 105 * fem, 124 * fem, 63 * fem),
+                          124 * fem, 105 * fem, 124 * fem, 100 * fem),
                       width: double.infinity,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
@@ -74,16 +74,22 @@ class _loginpageState extends State<loginpage> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 16),
-                    Text(
+
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
                       'Login',
                       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 16),
-                    TextField(
+                    )
+        ),
+
+                    Padding(padding: EdgeInsets.all(10),
+                      child:TextField(
+                        prefixText: '+1'
+                        keyboardType: TextInputType.number,
                       controller: _phoneNumberController,
                       decoration: InputDecoration(labelText: 'Phone Number'),
-                    ),
+                    ),),
                     ElevatedButton(
                       onPressed: () async {
                         await _auth.verifyPhoneNumber(
@@ -91,7 +97,8 @@ class _loginpageState extends State<loginpage> {
                           verificationCompleted:
                               (PhoneAuthCredential credential) async {
                             await _auth.signInWithCredential(credential);
-                            Navigator.pushReplacementNamed(context, '/home');
+                            Navigator.pushReplacementNamed(context,
+                              MaterialPageRoute(builder: (context) => HomePage()),);
                           },
                           verificationFailed: (FirebaseAuthException e) {
                             print(e.message);
@@ -105,10 +112,12 @@ class _loginpageState extends State<loginpage> {
                       },
                       child: Text('Send OTP'),
                     ),
-                    TextField(
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: TextField(
                       controller: _otpController,
                       decoration: InputDecoration(labelText: 'Enter OTP'),
-                    ),
+                    ),),
                     ElevatedButton(
                       onPressed: () async {
                         PhoneAuthCredential credential =
@@ -117,7 +126,10 @@ class _loginpageState extends State<loginpage> {
                           smsCode: _otpController.text,
                         );
                         await _auth.signInWithCredential(credential);
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                        );
                       },
                       child: Text('Verify'),
                     ),

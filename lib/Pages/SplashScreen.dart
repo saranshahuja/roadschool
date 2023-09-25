@@ -158,7 +158,7 @@ class _SplashScreenpageState extends State<SplashScreenpage> {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => HomePage(),
+                                      builder: (context) => loginpage(),
                                     ),
                                   );
                                 }

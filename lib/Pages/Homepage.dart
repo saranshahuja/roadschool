@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                 break;
               case 2:
               // If the Settings icon is tapped, navigate to the Settings page
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => SettingPage()),
                 );
