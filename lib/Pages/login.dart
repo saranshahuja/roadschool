@@ -1,143 +1,132 @@
-// String globalUserId;  // Global variable to store the user ID
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../utils.dart'; //
 import 'package:roadschool/Pages/Homepage.dart';
-
-
 
 class loginpage extends StatefulWidget {
   @override
   _loginpageState createState() => _loginpageState();
 }
 
-// updated ui
 class _loginpageState extends State<loginpage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  // globalUserId = userCredential.user?.uid;  // Save the user ID to the global variable
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _otpController = TextEditingController();
   String? _verificationId;
 
   @override
   Widget build(BuildContext context) {
-    double baseWidth = 430;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 0.97;
-
     return Scaffold(
-      // Reusing the background and layout from SplashScreen
-        body: SingleChildScrollView(
-
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                // autographicWJV (6ovoLydYjgYVsNWSUvXhK)
-                width: double.infinity,
-
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      'assets/images/image-4-bg.png',
-                    ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    'assets/images/image-4-bg.png',
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      // autographic2h (6ovoWe27enoughGBDbbipwK)
-                      margin:
-                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 9 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          124 * fem, 105 * fem, 124 * fem, 100 * fem),
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(9),
+                    padding: EdgeInsets.all(10),
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(
+                          'assets/images/image-3-bg.png',
+                        ),
+                      ),
+                    ),
+                    child: Center(
+                      child: SizedBox(
+                        width: 300,
+                        height: 194,
+                        child: Image.asset(
+                          'assets/images/iconwtbg.png',
                           fit: BoxFit.cover,
-                          image: AssetImage(
-                            'assets/images/image-3-bg.png',
-                          ),
-                        ),
-                      ),
-                      child: Center(
-                        // image2w2R (1:10)
-                        child: SizedBox(
-                          width: 300 * fem,
-                          height: 194 * fem,
-                          child: Image.asset(
-                            'assets/images/iconwtbg.png',
-                            fit: BoxFit.cover,
-                          ),
                         ),
                       ),
                     ),
-
-                    Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text(
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
                       'Login',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    )
-        ),
-
-                    Padding(padding: EdgeInsets.all(10),
-                      child:TextField(
-                        prefixText: '+1'
-                        keyboardType: TextInputType.number,
-                      controller: _phoneNumberController,
-                      decoration: InputDecoration(labelText: 'Phone Number'),
-                    ),),
-                    ElevatedButton(
-                      onPressed: () async {
-                        await _auth.verifyPhoneNumber(
-                          phoneNumber: _phoneNumberController.text,
-                          verificationCompleted:
-                              (PhoneAuthCredential credential) async {
-                            await _auth.signInWithCredential(credential);
-                            Navigator.pushReplacementNamed(context,
-                              MaterialPageRoute(builder: (context) => HomePage()),);
-                          },
-                          verificationFailed: (FirebaseAuthException e) {
-                            print(e.message);
-                          },
-                          codeSent: (String verificationId, int? resendToken) {
-                            _verificationId = verificationId;
-                          },
-                          codeAutoRetrievalTimeout: (String verificationId) {},
-                          timeout: Duration(seconds: 60),
-                        );
-                      },
-                      child: Text('Send OTP'),
+                      style:
+                      TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: TextField(
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: _phoneNumberController,
+                      decoration: InputDecoration(
+                        labelText: 'Phone Number',
+                        prefixText: '+1 ',
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await _auth.verifyPhoneNumber(
+                        phoneNumber: '+1 ' + _phoneNumberController.text,
+                        verificationCompleted:
+                            (PhoneAuthCredential credential) async {
+                          await _auth.signInWithCredential(credential);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomePage()),
+                          );
+                        },
+                        verificationFailed: (FirebaseAuthException e) {
+                          print(e.message);
+                        },
+                        codeSent: (String verificationId, int? resendToken) {
+                          _verificationId = verificationId;
+                        },
+                        codeAutoRetrievalTimeout: (String verificationId) {},
+                        timeout: Duration(seconds: 60),
+                      );
+                    },
+                    child: Text('Send OTP'),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: TextField(
                       controller: _otpController,
                       decoration: InputDecoration(labelText: 'Enter OTP'),
-                    ),),
-                    ElevatedButton(
-                      onPressed: () async {
-                        PhoneAuthCredential credential =
-                        PhoneAuthProvider.credential(
-                          verificationId: _verificationId!,
-                          smsCode: _otpController.text,
-                        );
-                        await _auth.signInWithCredential(credential);
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                        );
-                      },
-                      child: Text('Verify'),
                     ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ));
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      PhoneAuthCredential credential =
+                      PhoneAuthProvider.credential(
+                        verificationId: _verificationId!,
+                        smsCode: _otpController.text,
+                      );
+                      await _auth.signInWithCredential(credential);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
+                    },
+                    child: Text('Verify'),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

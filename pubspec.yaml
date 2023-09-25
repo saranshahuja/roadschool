@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   toggle_switch: ^2.1.0
-  
+  fl_chart: ^0.36.0
 
 
 

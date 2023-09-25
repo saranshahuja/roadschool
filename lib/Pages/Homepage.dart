@@ -3,8 +3,7 @@ import 'package:roadschool/Pages/Practicetests.dart';
 import 'package:roadschool/Pages/learnChapters.dart';
 import 'package:roadschool/Pages/progressScreen.dart';
 import 'package:roadschool/Pages/settings.dart';
-import '../widgets/textelementsstyles.dart';
-import 'SplashScreen.dart';
+import 'package:roadschool/Pages/SplashScreen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -168,9 +167,9 @@ class _HomePageState extends State<HomePage> {
                     height: 110,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(  // Using pushReplacement here
                           context,
-                          MaterialPageRoute(builder: (context) => UserProgressBarPage()),
+                          MaterialPageRoute(builder: (context) => ProgressScreen()), // Navigating to ProgressScreen
                         );
                       },
                       style: ElevatedButton.styleFrom(

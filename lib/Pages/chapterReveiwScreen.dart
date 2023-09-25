@@ -52,13 +52,13 @@ class ChapterReviewPage extends StatelessWidget {
               OutlinedButton(
                 onPressed: () {
                   // Navigate back to the HomePage
-                  Navigator.of(context).pushAndRemoveUntil(
+                  Navigator.pushReplacement(
+                    context,
                     MaterialPageRoute(builder: (context) => HomePage()),
-                        (Route<dynamic> route) => false, // This line clears the navigation stack
                   );
                 },
                 child: Text(
-                  'Finish',
+                  'Done',
                   style: TextStyle(color: Colors.black),
                 ),
                 style: ButtonStyle(

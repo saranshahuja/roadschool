@@ -1,57 +1,117 @@
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:roadschool/Pages/Homepage.dart';
 
-class UserProgressBarPage extends StatefulWidget {
+class ProgressScreen extends StatefulWidget {
   @override
-  _UserProgressBarPageState createState() => _UserProgressBarPageState();
+  _ProgressScreenState createState() => _ProgressScreenState();
 }
 
-class _UserProgressBarPageState extends State<UserProgressBarPage> {
-  List<String> completedChapters = [];
-  List<String> completedTests = [];
+class _ProgressScreenState extends State<ProgressScreen> {
+  int totalChapters = 0; // Initialized
+  int completedChapters = 0; // Initialized
+  int completedTests = 0; // Initialized
 
   @override
   void initState() {
     super.initState();
-    // Fetch the user's progress from Firestore
     fetchUserProgress();
   }
 
   Future<void> fetchUserProgress() async {
-    // Replace 'userId' with the actual user ID from Firebase Auth
-    final userId = 'your_user_id_here';
-    DocumentSnapshot snapshot = await FirebaseFirestore.instance.collection('UserProgress').doc(userId).get();
+    final User? user = FirebaseAuth.instance.currentUser;
+    final String userId = user != null ? user.uid : 'no-user';
 
-    setState(() {
-      completedChapters = List<String>.from(snapshot.get('completedChapters') ?? []);
-      completedTests = List<String>.from(snapshot.get('completedTests') ?? []);
-    });
+    // Fetch total chapters
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('chapters').get();
+    totalChapters = querySnapshot.docs.length;
+
+    // Fetch completed chapters and tests
+    DocumentSnapshot userProgressDoc = await FirebaseFirestore.instance.collection('UserProgress').doc(userId).get();
+    Map<String, dynamic> userProgress = userProgressDoc.data() as Map<String, dynamic>;
+
+    completedChapters = userProgress['completedChapters']?.length ?? 0; // Null check
+    completedTests = userProgress['completedTests']?.length ?? 0; // Null check
+
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Progress Bar'),
+        title: Text(
+          'Road School',
+          style: TextStyle(
+            fontFamily: 'inter',
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Color(0xFFD9D9D9),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+        ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('Completed Chapters: ${completedChapters.length}'),
-            SizedBox(height: 20),
-            LinearProgressIndicator(
-              value: completedChapters.length / 10, // Assuming there are 10 chapters in total
+      // Using `SingleChildScrollView` to avoid overflow when keyboard appears
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity, // Take full width
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Your Progress',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'inter',
+                  ),
+                ),
+                SizedBox(height: 32),
+                Text('Chapters completed: $completedChapters/$totalChapters'),
+                SizedBox(height: 16),
+                Text('Tests completed: $completedTests/$totalChapters'),
+                SizedBox(height: 32),
+                Container(
+                  height: 200,
+                  width: 200,
+                  child: PieChart(
+                    PieChartData(
+                      sections: [
+                        PieChartSectionData(
+                          value: completedChapters.toDouble(),
+                          color: Color(0x500071DA),
+                          title: 'Chapters',
+                        ),
+                        PieChartSectionData(
+                          value: completedTests.toDouble(),
+                          color: Color(0x58FF3259),
+                          title: 'Tests',
+                        ),
+                        PieChartSectionData(
+                          value: (totalChapters - completedChapters - completedTests).toDouble(),
+                          color: Colors.grey[200],
+                          title: 'Remaining',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 40),
-            Text('Completed Tests: ${completedTests.length}'),
-            SizedBox(height: 20),
-            LinearProgressIndicator(
-              value: completedTests.length / 5, // Assuming there are 5 tests in total
-            ),
-          ],
+          ),
         ),
       ),
     );

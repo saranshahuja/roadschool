@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:roadschool/Pages/chapterReveiwScreen.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/rendering.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
@@ -37,6 +37,20 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
         _loading = false;
       });
     });
+  }
+
+  // Function to update user progress in Firestore
+  void updateUserTestProgress(String chapterId) async {
+    final User? user = FirebaseAuth.instance.currentUser;
+    final String userId = user != null ? user.uid : 'no-user';
+
+    // Update Firestore with the completed test
+    await FirebaseFirestore.instance
+        .collection('UserProgress')
+        .doc(userId)
+        .set({
+      'completedTests': FieldValue.arrayUnion([chapterId]),
+    }, SetOptions(merge: true));
   }
 
   Future<Map<String, List<Map<String, dynamic>>>> fetchQuestionsAndImages(String chapterId) async {
@@ -265,6 +279,8 @@ class LinearProgressIndicatorAppState extends State<LinearProgressIndicatorApp> 
                                   _selectedOptionIndex = -1;
                                   _answered = false;
                                 } else {
+                                  // Update user progress before navigating
+                                  updateUserTestProgress(widget.chapterId);
                                   // Navigate to Congratulations page
                                   Navigator.push(
                                     context,

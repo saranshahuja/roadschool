@@ -2,6 +2,26 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+Future<void> updateUserProgress(String userId, String completedChapter, String completedTest) async {
+  // Get a reference to the user's progress document
+  DocumentReference userProgressRef = FirebaseFirestore.instance.collection('UserProgress').doc(userId);
+
+  // Update completed chapters
+  if (completedChapter.isNotEmpty) {
+    await userProgressRef.update({
+      'completedChapters': FieldValue.arrayUnion([completedChapter]),
+    });
+  }
+
+  // Update completed tests
+  if (completedTest.isNotEmpty) {
+    await userProgressRef.update({
+      'completedTests': FieldValue.arrayUnion([completedTest]),
+    });
+  }
+}
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override

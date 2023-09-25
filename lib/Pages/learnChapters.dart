@@ -39,6 +39,26 @@ class _LearnChaptersState extends State<LearnChapters> {
     return fetchedChapters;
   }
 
+  Future<List<Map<String, dynamic>>> fetchQuestions() async {
+    List<Map<String, dynamic>> fetchedQuestions = [];
+    QuerySnapshot querySnapshot =
+    await FirebaseFirestore.instance.collection('questions').get();
+    int questionNumber = 1; // Initialize the question number
+
+    for (var doc in querySnapshot.docs) {
+      var questionData = doc.data() as Map<String, dynamic>;
+
+      // Add the question number to the question data
+      questionData['questionNumber'] = questionNumber;
+
+      fetchedQuestions.add(questionData);
+
+      questionNumber++; // Increment the question number for the next question
+    }
+
+    return fetchedQuestions;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_loading) {
@@ -56,7 +76,6 @@ class _LearnChaptersState extends State<LearnChapters> {
                 MaterialPageRoute(builder: (context) => HomePage()),
               );
             },
-
           ),
           title: Text(
             'Practice Tests',
@@ -69,14 +88,14 @@ class _LearnChaptersState extends State<LearnChapters> {
     } else {
       return Scaffold(
         appBar: AppBar(
-
-            leading: BackButton(color: Colors.white,),
-            title: const Text(
-              'Learn Chapters',
-              style: TextStyle(color: Colors.white),
-            ),
-
-            backgroundColor: const Color(0xFF034D91)
+          leading: BackButton(
+            color: Colors.white,
+          ),
+          title: const Text(
+            'Learn Chapters',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: const Color(0xFF034D91),
         ),
         body: GridView.builder(
             itemCount: chapters.length,
@@ -88,58 +107,69 @@ class _LearnChaptersState extends State<LearnChapters> {
               String chapterName = chapters[index]['name'];
 
               return GestureDetector(
-                  onTap: () {
-                    // TODO: Add Firestore logging code here to update user's completed chapters
-                    // For example:
-                    // await FirebaseFirestore.instance.collection('UserProgress').doc(userId).update({'completedChapters': FieldValue.arrayUnion([currentChapterId])});
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AnswerSheetPage(chapterId: chapters[index]['id']),
-                      ),
-                    );
-                  },
+                onTap: () async {
+                  // Fetch questions and assign question numbers
+                  List<Map<String, dynamic>> questions =
+                  await fetchQuestions();
 
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
-                    child: Card(
-                        child: Container(
-                            width: 141,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff000000)),
-                              color: const Color(0xffA6CEF2),
-                              borderRadius: BorderRadius.circular(15),
+                  // TODO: Add Firestore logging code here to update user's completed chapters
+                  // For example:
+                  // await FirebaseFirestore.instance.collection('UserProgress').doc(userId).update({'completedChapters': FieldValue.arrayUnion([currentChapterId])});
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AnswerSheetPage(
+                        chapterId: chapters[index]['id'],
+                        questions: questions,
+                      ),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                  child: Card(
+                    child: Container(
+                      width: 141,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xff000000)),
+                        color: const Color(0xffA6CEF2),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                children: [
+                                  const TextSpan(
+                                    text: 'Learn ',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: chapterName,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    ), // Adjust this based on your data
+                                  ),
+                                ],
+                              ),
                             ),
-                            child: Center(
-                                child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      RichText(
-                                        textAlign: TextAlign.center,
-                                        text: TextSpan(
-                                          children: [
-                                            const TextSpan(
-                                              text: 'Learn ',
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w400,
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: chapterName,
-                                              style: const TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w400,
-                                                color: Colors.black,
-                                              ), // Adjust this based on your data
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ])))),
-                  ));
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
             }),
       );
     }

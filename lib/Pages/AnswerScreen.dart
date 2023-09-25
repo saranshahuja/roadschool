@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Import FirebaseAuth
+import 'package:roadschool/Pages/chapterReveiwScreen.dart';
 
 class AnswerSheetPage extends StatefulWidget {
   final String chapterId;
-
-  AnswerSheetPage({required this.chapterId});
+  final List<Map<String, dynamic>> questions;
+  AnswerSheetPage({required this.chapterId, required this.questions});
 
   @override
   _AnswerSheetPageState createState() => _AnswerSheetPageState();
@@ -22,7 +24,7 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
     super.initState();
     FirebaseFirestore.instance
         .collection('chapters')
-        .doc(widget.chapterId) // Using chapterId from constructor
+        .doc(widget.chapterId)
         .collection('questions')
         .get()
         .then((QuerySnapshot querySnapshot) {
@@ -35,7 +37,6 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
       });
     });
   }
-
   void _showNextQuestion() {
     setState(() {
       if (_currentQuestionIndex < _questions.length - 1) {
@@ -58,6 +59,31 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
     setState(() {
       _showAnswer = !_showAnswer;
     });
+  }
+
+  void _finishQuiz() async {
+    // Update completed chapters in Firestore
+    updateUserProgress(widget.chapterId);
+
+    // Navigate to ChapterReviewPage
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => ChapterReviewPage()),
+    );
+  }
+
+  // Function to update user progress in Firestore
+  void updateUserProgress(String chapterId) async {
+    final User? user = FirebaseAuth.instance.currentUser;
+    final String userId = user != null ? user.uid : 'no-user';
+
+    // Update Firestore with the completed chapter
+    await FirebaseFirestore.instance
+        .collection('UserProgress')
+        .doc(userId)
+        .set({
+      'completedChapters': FieldValue.arrayUnion([chapterId]),
+    }, SetOptions(merge: true));
   }
 
   @override
@@ -170,12 +196,12 @@ class _AnswerSheetPageState extends State<AnswerSheetPage> {
               children: [
                 TextButton(
                   onPressed: _showPreviousQuestion,
-                  child:const Text('Previous', style: TextStyle(color: Colors.black,),),
+                  child: const Text('Previous', style: TextStyle(color: Colors.black,),),
                 ),
                 SizedBox(width: 16),
                 TextButton(
-                  onPressed: _showNextQuestion,
-                  child: const Text('Next', style: TextStyle(color: Colors.black,),),
+                  onPressed: _currentQuestionIndex == _questions.length - 1 ? _finishQuiz : _showNextQuestion,
+                  child: Text(_currentQuestionIndex == _questions.length - 1 ? 'Finish' : 'Next', style: TextStyle(color: Colors.black,),),
                 ),
               ],
             ),
